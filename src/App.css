@@ -4,7 +4,7 @@
   padding: 0;
 }
 html, body{
-  background-color: rgb(255, 235, 233);
+  background-color: rgb(151, 187, 207);
   min-height: 100vh;
 }
 .main{
@@ -376,6 +376,81 @@ h3{
   background: #4caf50;
   color: white;
   border: none;
+}
+
+/*login page*/
+.login{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #2196f3;
+  width: 40%;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-left: 14rem;
+  border-radius: 20px;
+  padding-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  /* shiny edge */
+  border: 1px solid rgba(255, 255, 255, 0.175);
+
+
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.179),
+    0 0 10px rgba(255, 255, 255, 0);
+
+  color: white;
+}
+h1{
+  color: #4378f3;
+}
+.user-input{
+  background-color: #fff;
+  width: 60%;
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: none;
+
+}
+.login-btn{
+  background-color: white;
+  color: black;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ccc, transparent);
+}
+
+.divider span {
+  margin: 0 10px;
+  color: #666;
+}
+.google-btn{
+  background-color: transparent;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-left: 5rem;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border-color: #666;
+  width: 60%;
 }
 
 

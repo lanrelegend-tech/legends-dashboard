@@ -8,32 +8,14 @@ import Time from "./components/Time";
 import ProjectSummary from "./components/ProjectSummary";
 import  Dashboard from "./components/Dashboard";
 import TaskSumarry from "./components/TaskSumarry";
+import LoginPage from "./components/LoginPage";
 function App() {
   
 
   return (
-    <div className="app">
-      <Sidebar/>
-      
-      <div className="main">
-        <Searchbar/>
-      
-      
-      <div className="overview">
-        <Projects/>
-        <Task/>
-        <Time/>
-        <Totalrevenue/>
-      </div>
-      <div className="project-flex">
-        <ProjectSummary/>
-        <Dashboard/>
-      </div>
-      
-      <TaskSumarry/>
-    </div>
-    </div>
-
+    <div>
+   <LoginPage/>
+</div>
   );
 }
 
