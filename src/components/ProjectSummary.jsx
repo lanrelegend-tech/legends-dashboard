@@ -42,7 +42,7 @@ function ProjectSummary() {
                 <td>nana web development</td>
                 <td>solomon</td>
               <td>2026-04-26</td>
-              <td className='undone'>Undone</td>
+              <td className='pending'>pending</td>
               <td>
                 <div className='circle' data-percentage="0">
                   <span className='progress-text'>0%</span>

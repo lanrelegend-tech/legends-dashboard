@@ -4,23 +4,29 @@
   padding: 0;
 }
 html, body{
-  background-color: rgb(254, 185, 178);
+  background-color: rgb(255, 235, 233);
+  min-height: 100vh;
 }
 .main{
-  margin-left: 15rem;
+  margin-left: 13rem;
 }
 
 /* sidebar */
 .sidebar{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  overflow-y: auto;
+  
+  justify-content: flex-start;
   background-color: black;
-  height: 100vh;
-  width: 17%;
-  padding-left: 2rem;
+  height: 100%;
+  width: 200px;
+  padding: 2rem;
   padding-top: 1rem;
-  top: 0;
+  
+  bottom: 0;
+
+
   position: fixed;
 
 
@@ -28,27 +34,34 @@ html, body{
 .sidebar h1{
   color: azure;
   font-size: 1rem;
-  margin-bottom: 6rem;
+  margin-top: 1rem;
+  
 
 }
 .sidebar p {
-  margin-bottom: 3rem; 
-  gap: 2rem;
+  margin-bottom: 2rem; 
   color: beige;
+  padding: 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  
 }
-.sidebar p :hover{
-  color: azure;
+.sidebar p:hover{
+  background-color: #eee;
+  color: black;
 }
 .sidebar h2 {
   color: rgb(239, 244, 252);
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   font-size: 1rem;
-  margin-right: 2rem;
+
   
 }
 .sidebar h3{
   color: bisque;
-  margin-top: 8em;
+  margin-top: 1rem;
+  
+  
   margin-left: -1rem;
 }
 /*searchbar */
@@ -64,6 +77,7 @@ html, body{
 }
 .searchbar h1{
   font-size: 2rem;
+  font-family: monospace;
 
 }
 .searchbtn{
@@ -78,7 +92,7 @@ html, body{
   flex-direction: row;
   gap: 1.5rem;
   margin-right: 2rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
   
@@ -88,12 +102,17 @@ html, body{
 }
 .overview h2 {
   font-size: 1rem;
+  margin-right: 1rem;
 }
 .overviewcard{
   border: 2px solid none !important;
   border-radius: 20px;
-  padding: 20px;
-background-color:  rgb(255, 214, 209);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+background-color:  rgb(255, 239, 237);
   flex: 1  1  150PX;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -103,18 +122,25 @@ background-color:  rgb(255, 214, 209);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   border-color: black;
   cursor: pointer;
+  background-color:  rgb(255, 194, 186);
 }
 /* PROJECT SUMMARY */
 .table-summary{
   background-color: azure;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   border-radius: 20px;
   border: none;
   width: 70%;
-  height: 30vh;
+  flex: 1 500px;
+  margin-right: 2rem;
+  
 }
 h2{
   text-align: start;
   margin-left: 2rem;
+  color: red;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
 }
 .table-container{
@@ -144,4 +170,271 @@ th,td {
 .undone{
   color: red;
   font-weight: bold;
+} 
+/*project flex*/
+.project-flex{
+  display: flex;
+  gap: 1rem;
+  margin-top: -1rem;
+  flex-wrap: wrap;
+}
+
+/* dashboard*/
+.overview-card{
+background-color:  rgb(255, 239, 237);
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  width: 30%;
+
+  margin-right: 2rem;
+  
+}
+h3{
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  margin-top: -2rem;
+  margin-bottom: -2rem;
+
+}
+
+
+.progress-container {
+  position: relative;
+  display: flex;
+  aspect-ratio: 2/1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  margin: 10px auto;
+}
+
+.semi-circle {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 15px solid #ffffff;
+  border-bottom: none;
+  border-radius: 200px 200px 0 0;
+  position: absolute;
+  
+}
+
+.progress {
+  width: 50%;
+  height: 50%;
+  border: 15px solid green;
+  border-bottom: none;
+  border-radius: 200px 200px 0 0;
+  position: absolute;
+  clip-path: inset(0 50% 0 0); 
+  
+}
+
+.text {
+  align-items: center;
+  
+  position: absolute;
+  
+  top: 80%;
+  left: 40%;
+  justify-content: center;
+  margin-bottom: 2rem;
+  
+}
+
+.text h2 {
+  font-size: 1.5rem;
+
+
+
+
+}
+
+
+
+.legends {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  
+  color: #4caf50;
+
+}
+
+.legends i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  
+}
+
+.completed {
+  background: #4caf50;
+  color: green;
+}
+
+.ongoing {
+  background: #8cc88f;
+}
+
+.pending {
+  background: repeating-linear-gradient(
+    45deg,
+    #b6b6b6,
+    #8d1818 3px,
+    #ffe3e3 3px,
+    #bd4545 6px
+  );
+}
+
+/*task summary*/
+
+.task-card {
+  width: 70%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.task-card h3 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.4rem;
+
+}
+
+.task-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.task-row span {
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.view {
+  background: #2196f3;
+  color: white;
+}
+
+.edit {
+  background: #4caf50;
+  color: white;
+}
+
+.delete {
+  background: #f44336;
+  color: white;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-btn {
+  padding: 5px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.filter-btn.active {
+  background: #4caf50;
+  color: white;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* responsive */
+
+@media (max-width:768px) {
+  .sidebar{
+    display: none;
+  }
+  .main{
+    margin-left: 3rem;
+  }
+  .overview h2{
+    color: #2196f3;
+    
+  }
+  .searchbar{
+    gap: 3rem;
+  
+  }
+  .searchbar h1{
+    font-size: 1rem;
+  }
+  .searchbtn{
+    width: 70%;
+  }
+  .table-summary{
+    width: 100%;
+    margin-left: -1rem;
+  }
+  .overview-card{
+    width: 70%;
+    margin-left: 2rem;
+  }
+  .task-card{
+    width: 100%;
+    margin-left: -1rem;
+  }
+  .text{
+    margin-left: -1.5rem;
+  }
+  
+}
+
+
+
+/*tablet*/
+@media (max-width:839px) {
+  .sidebar{
+
+  }
+  
 }
