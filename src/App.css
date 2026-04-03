@@ -4,7 +4,7 @@
   padding: 0;
 }
 html, body{
-  background-color: rgb(151, 187, 207);
+  background-color: #ACC8A2;
   min-height: 100vh;
 }
 .main{
@@ -417,7 +417,7 @@ h1{
 
 }
 .login-btn{
-  background-color: white;
+  background-color: rgb(11, 133, 255);
   color: black;
   padding: 0.4rem;
   border-radius: 10px;
@@ -443,7 +443,7 @@ h1{
 .google-btn{
   background-color: transparent;
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
   margin-left: 5rem;
   justify-content: center;
@@ -451,6 +451,109 @@ h1{
   padding: 0.5rem;
   border-color: #666;
   width: 60%;
+}
+/* profile*/
+/* Page *
+
+/* Card */
+.profile-card {
+  width: 40%;
+  margin-left: 14rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  
+  background: #1A2517;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+.toogle{
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-left: -1rem;
+}
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ACC8A2;
+}
+
+/* Profile Pic */
+.profile-pic-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.edit-pic-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ACC8A2;
+  background: none;
+}
+
+/* Fields */
+.profile-field {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-field label {
+  
+  margin-bottom: 5px;
+  color: #ACC8A2;
+  font-size: 0.9rem;
+  align-items: left;
+  
+}
+
+.field-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.field-row input {
+  flex: 1;
+  padding: 10px;
+  width: 20vw;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.field-row button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: #ACC8A2;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .field-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .field-row button {
+    width: 100%;
+  }
 }
 
 
@@ -500,6 +603,9 @@ h1{
   }
   .text{
     margin-left: -1.5rem;
+  }
+  .profile-card{
+    margin-bottom: 2rem;
   }
   
 }

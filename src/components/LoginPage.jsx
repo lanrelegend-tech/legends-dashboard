@@ -1,5 +1,6 @@
 
 import React from "react";
+import { FcGoogle } from "react-icons/fc";
 
 function LoginPage({ onLogin }) {
   return (
@@ -26,6 +27,7 @@ function LoginPage({ onLogin }) {
         <div className="divider">
       <span>OR</span></div>
       <button className="google-btn">
+        <span><FcGoogle/></span>
   <span>Continue with Google</span>
   <span>&rarr;</span>
 </button>

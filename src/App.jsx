@@ -9,12 +9,13 @@ import ProjectSummary from "./components/ProjectSummary";
 import  Dashboard from "./components/Dashboard";
 import TaskSumarry from "./components/TaskSumarry";
 import LoginPage from "./components/LoginPage";
+import  Profile from "./components/Profile";
 function App() {
   
 
   return (
     <div>
-   <LoginPage/>
+   <Profile/>
 </div>
   );
 }
