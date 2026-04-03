@@ -35,4 +35,4 @@ function Mainpage() {
   );
 }
 
-export default Maipage;
+export default Mainpage;

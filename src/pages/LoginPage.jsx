@@ -3,24 +3,26 @@ import React,{ useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password,setPassword] = useState("");
+  
 
 
   
   const handleLogin = () => {
-      if ((name || "").trim() === "" || (password || "").trim() === "") {
-      toast.error("Please enter both Name and Email"); 
-      return;
-      }
-localStorage.setItem("name",name);
-localStorage.setItem("password",password);
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find((u) => u.email === email && u.password === password);
 
-    navigate("/MainPage");
+    if (user) {
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      navigate("/");
+    } else {
+      toast.error("Invalid email or password");
+    }
   };
   
   return (
@@ -29,9 +31,9 @@ localStorage.setItem("password",password);
         <h3 >Sign into your account</h3>
         <div>
         <input
-          type="name"
+          type="email"
           
-          placeholder="Name" className="user-input" onChange={(e) => setName(e.target.value)}
+          placeholder="Email" className="user-input" onChange={(e) => setEmail(e.target.value)}
         />
         </div>
         <div>
@@ -55,7 +57,7 @@ localStorage.setItem("password",password);
   <span>Continue with Google</span>
   <span>&rarr;</span>
 </button>
-      <p style={{color:"white"}}>Dont have an account? Sign up</p>
+      <p style={{color:"white"}}>Dont have an account?<Link to='/SignupPage'> Sign up</Link></p>
       </div>
 
        <ToastContainer 

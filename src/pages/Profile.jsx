@@ -1,10 +1,42 @@
-import React from 'react'
+import React, { useState, useRef ,useEffect} from "react";
 import profileImg from "../assets/profile-img.png";
 import { FaUserEdit } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import Sidebar from '../components/Sidebar';
 
 function Profile() {
+  const [image, setImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  // Load saved image
+  useEffect(() => {
+    const savedImage = localStorage.getItem("profilePic");
+    if (savedImage) {
+      setImage(savedImage);
+    }
+  }, []);
+
+  // When image is clicked → open file picker
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  // When user selects image
+  const handleImageChange = (e) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result);
+      localStorage.setItem("profilePic", reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  
+  };
+
   return (
     <div><Sidebar/>
     <div className="page">
@@ -21,7 +53,16 @@ function Profile() {
             alt="Profile"
             className="profile-pic"
           />
-          <button className="edit-pic-btn"><FaUserEdit/></button>
+          <button className="edit-pic-btn" onClick={handleImageClick}><FaUserEdit/></button>
+
+
+               <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleImageChange}
+        style={{ display: "none" }}
+      />
+    
         </div>
 
         {/* Name */}
@@ -29,7 +70,7 @@ function Profile() {
           <label>Name</label>
           <div className="field-row">
             <input type="text" placeholder="Your Name" />
-            <button><CiEdit size={28}/></button>
+            <button ><CiEdit size={28}/></button>
           </div>
         </div>
 

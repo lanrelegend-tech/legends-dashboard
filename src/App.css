@@ -68,7 +68,7 @@ html, body{
 .searchbar{
   background-color: transparent;
   display: flex;
-  margin-top: -0.5rem;
+  margin-top: -1rem;
   width: 80%;
   border-radius: 20px;
   justify-content: center;
@@ -93,7 +93,7 @@ html, body{
   flex-direction: row;
   gap: 1.5rem;
   margin-right: 2rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
   
@@ -101,16 +101,22 @@ html, body{
 .overview h1{
   font-size: 1rem;
   color: rgb(255, 255, 255);
+  margin-top: 1rem;
+
+
 }
 .overview h2 {
   font-size: 1rem;
   margin-right: 1rem;
+
+  margin-top: -3rem;
 }
 .overviewcard{
   border: 2px solid none !important;
   border-radius: 20px;
   padding: 1rem;
   display: flex;
+  height: 20vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -134,6 +140,7 @@ background-color:  #bbd2b2;
   border-radius: 20px;
   border: none;
   width: 70%;
+  margin-top: 1rem;
   flex: 1 500px;
   margin-right: 2rem;
   
@@ -191,6 +198,7 @@ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   text-align: center;
   width: 30%;
+  margin-top: 1rem;
 
   margin-right: 2rem;
   
@@ -305,7 +313,7 @@ h3{
 .task-card {
   width: 70%;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -388,8 +396,9 @@ h3{
   background:linear-gradient(to bottom, #1A2517,#ACC8A2);
   width: 40%;
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
   margin-left: 14rem;
+  margin-bottom: 3rem;
   border-radius: 20px;
   padding-bottom: 2rem;
     

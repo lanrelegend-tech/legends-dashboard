@@ -4,7 +4,10 @@ import Sidebar from '../components/Sidebar'
 
 function TaskPage() {
   return (
-    <div><TaskSumarry/>
+    <div>
+        <div className='main'>
+        <TaskSumarry/>
+        </div>
 <Sidebar/>
     </div>
   );

@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
         <h1><SiLogitech />legendtech</h1>
         <h2><IoMdAddCircleOutline />Create new project</h2>
         
-            <p onClick={() => navigate("/MainPage")}><RxDashboard />Dashboard</p>
-            <p> <GrProjects /> Projects</p>
+            <p onClick={() => navigate("/")}><RxDashboard />Dashboard</p>
+            <p onClick={() => navigate ("/ProjectPage")}> <GrProjects /> Projects</p>
             <p onClick={() => navigate ("/TaskPage")}><FaTasks />Tasks</p>
             <p><SlCalender />Calender</p>
             <p onClick={() => navigate("/Profile")}><CiSettings />settings</p>
