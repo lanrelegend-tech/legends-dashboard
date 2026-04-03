@@ -7,9 +7,9 @@ function TaskSumarry() {
 
     
       <div className="filters">
-        <button className="filter-btn active">All</button>
-        <button className="filter-btn">Active</button>
-        <button className="filter-btn">Inactive</button>
+        <button className="filter-btn active" style={{color:'black'}}>All</button>
+        <button className="filter-btn" style={{color:'black'}}>Active</button>
+        <button className="filter-btn" style={{color:'black'}}>Inactive</button>
       </div>
 
     

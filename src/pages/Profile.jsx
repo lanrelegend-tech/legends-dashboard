@@ -2,9 +2,11 @@ import React from 'react'
 import profileImg from "../assets/profile-img.png";
 import { FaUserEdit } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
+import Sidebar from '../components/Sidebar';
 
 function Profile() {
   return (
+    <div><Sidebar/>
     <div className="page">
 
       <div className="profile-card">
@@ -60,6 +62,7 @@ function Profile() {
 
       </div>
 
+    </div>
     </div>
   );
 }

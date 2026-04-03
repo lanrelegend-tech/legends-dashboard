@@ -1,22 +1,24 @@
-import Sidebar from "./components/Sidebar";
+import React from "react";
+import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import LoginPage from "./pages/LoginPage";
+import TaskPage from "./pages/TaskPage";
+import Profile from "./pages/Profile";
 import "./App.css";
-import Searchbar from "./components/Searchbar";
-import Task from "./components/Task";
-import Projects from "./components/Projects";
-import Totalrevenue from "./components/Totalrevenue";
-import Time from "./components/Time";
-import ProjectSummary from "./components/ProjectSummary";
-import  Dashboard from "./components/Dashboard";
-import TaskSumarry from "./components/TaskSumarry";
-import LoginPage from "./components/LoginPage";
-import  Profile from "./components/Profile";
+
 function App() {
   
 
   return (
-    <div>
-   <Profile/>
-</div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage/>} />
+        <Route path="/MainPage" element={<MainPage/>} />
+        <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/TaskPage" element={<TaskPage/>}/>
+      </Routes>
+      </Router>
+   
   );
 }
 

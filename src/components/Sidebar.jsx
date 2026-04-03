@@ -7,18 +7,21 @@ import { CiSettings } from "react-icons/ci";
 import { SiLogitech } from "react-icons/si";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
  function Sidebar() {
+    const navigate = useNavigate();
+  
   return (
     <div className="sidebar">
         <h1><SiLogitech />legendtech</h1>
         <h2><IoMdAddCircleOutline />Create new project</h2>
         
-            <p><RxDashboard />Dashboard</p>
+            <p onClick={() => navigate("/MainPage")}><RxDashboard />Dashboard</p>
             <p> <GrProjects /> Projects</p>
-            <p><FaTasks />Tasks</p>
+            <p onClick={() => navigate ("/TaskPage")}><FaTasks />Tasks</p>
             <p><SlCalender />Calender</p>
-            <p><CiSettings />settings</p>
+            <p onClick={() => navigate("/Profile")}><CiSettings />settings</p>
         
         <h3><IoMdHelpCircleOutline /></h3>
     </div>
