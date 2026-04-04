@@ -12,7 +12,7 @@ function ProjectSummary() {
               <th>Project Maneger</th>
               <th>Due date</th>
               <th>Status</th>
-              <th>Progress</th>
+              <th>Priority</th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +23,7 @@ function ProjectSummary() {
               <td className='completed'>Completed</td>
               <td>
                 <div className='circle' data-percentage="100">
-                  <span className='progress-text'>100%</span>
+                  <span className='progress-text'>High</span>
                 </div>
               </td>
             </tr>
@@ -34,7 +34,7 @@ function ProjectSummary() {
               <td className='ongoing'>Ongoing</td>
               <td>
                 <div className='circle' data-percentage="50">
-                  <span className='progress-text'>50%</span>
+                  <span className='progress-text'>Medium</span>
                 </div>
               </td>
               </tr>
@@ -45,7 +45,7 @@ function ProjectSummary() {
               <td className='pending'>pending</td>
               <td>
                 <div className='circle' data-percentage="0">
-                  <span className='progress-text'>0%</span>
+                  <span className='progress-text'>Low</span>
                 </div>
               </td>
               </tr>

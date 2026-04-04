@@ -319,7 +319,40 @@ h3{
     #bd4545 6px
   );
 }
-
+/* create project*/
+.create-project-form {
+  background-color: #1A2517;
+  width: 40%;
+  margin-left: 14rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 20px;
+  padding: 2rem;
+  
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.project-input {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+}
+.project-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #4caf50;
+}
+.create-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
 /*task summary*/
 
 .task-card {
@@ -343,7 +376,6 @@ h3{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column-reverse;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }

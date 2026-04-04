@@ -16,6 +16,7 @@ function LoginPage() {
   const handleLogin = () => {
       const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === email && u.password === password);
+    localStorage.setItem("loginTime", Date.now());
 
     if (user) {
       localStorage.setItem("currentUser", JSON.stringify(user));

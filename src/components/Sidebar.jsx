@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
   return (
     <div className="sidebar">
         <h1><SiLogitech />legendtech</h1>
-        <h2><IoMdAddCircleOutline />Create new project</h2>
+        <p onClick={() => navigate("/CreateProject")}> <IoMdAddCircleOutline />Create project</p>
         
             <p onClick={() => navigate("/")}><RxDashboard />Dashboard</p>
             <p onClick={() => navigate ("/ProjectPage")}> <GrProjects /> Projects</p>

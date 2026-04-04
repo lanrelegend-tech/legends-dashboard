@@ -36,7 +36,7 @@ useEffect(() => {
       completed: false,
     };
 
-    setTasks([...tasks, nextTask]);
+    setTasks([ nextTask, ...tasks]);
     setNewTask('');
   };
 

@@ -9,6 +9,7 @@ import "./App.css";
 import ProjectPage from "./pages/ProjectPage";
 import RedirectIfAuth from "./components/RedirectIfAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CreateProject from "./pages/CreateProject";
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Profile" element={<Profile/>}/>
         <Route path="/TaskPage" element={<TaskPage/>}/>
         <Route path ="/ProjectPage" element={<ProjectPage/>}/>
+        <Route path="/CreateProject" element={<CreateProject/>}/>
             <Route
         path="/"
         element={
