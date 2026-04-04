@@ -3,6 +3,8 @@ import profileImg from "../assets/profile-img.png";
 import { FaUserEdit } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import Sidebar from '../components/Sidebar';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
 
 function Profile() {
   const [image, setImage] = useState(null);
@@ -39,6 +41,10 @@ function Profile() {
 
   const [name, setName] = useState("");
 const [email, setEmail] = useState("");
+const [isEditing,setIsEditing] =useState(true);
+const [countryCode, setCountryCode] = useState("+1");
+const [phone, setPhone] = useState("");
+const [isEditingPhone, setIsEditingPhone] = useState(false);
 
 
 useEffect(() => {
@@ -95,8 +101,19 @@ const handleSave = () => {
           <label>Name</label>
           <div className="field-row">
             <input type="text" value={name}
-            onChange={(e) => setName(e.target.value)} />
-            <button onClick={handleSave}><CiEdit size={28}/></button>
+            readOnly={!isEditing}
+            onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => {
+        if (e.key === "Enter" &&isEditing) {
+          handleSave();
+          setIsEditing(false);
+
+         }
+         }} />
+            <button onClick={() => {
+              setName("");
+              setIsEditing(true);
+            }}><CiEdit size={28}/></button>
           </div>
         </div>
 
@@ -104,8 +121,35 @@ const handleSave = () => {
         <div className="profile-field">
           <label>Email</label>
           <div className="field-row">
-            <input type="email" value={email} />
-            <button><CiEdit size={28}/></button>
+        
+ <input type="text" value={email}
+            readOnly={!isEditing}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => {
+        if (e.key === "Enter" &&isEditing) {
+          const emailInput = document.createElement("input");
+        emailInput.type = "email";
+        emailInput.value = email;
+        if (!emailInput.checkValidity()) {
+          toast.error("Please enter a valid email!");
+          return;
+        }
+
+        // Save email along with name
+        handleSave();
+        alert("Email saved!");
+        setIsEditing(false);
+      
+    
+          handleSave();
+          setIsEditing(false);
+
+         }
+         }} />
+            <button onClick={() => {
+              setEmail("");
+              setIsEditing(true);
+            }}><CiEdit size={28}/></button>
           </div>
         </div>
 
@@ -113,8 +157,46 @@ const handleSave = () => {
         <div className="profile-field">
           <label>Phone Number</label>
           <div className="field-row">
-            <input type="text" placeholder="+234 801 234 5678" />
-            <button><CiEdit size={28}/></button>
+                <select
+      value={countryCode}
+      onChange={(e) => setCountryCode(e.target.value)}
+      disabled={!isEditingPhone} // only editable when editing
+    >
+      <option value="+234">+234 </option>
+      <option value="+1">+1 </option>
+      <option value="+44">+44 </option>
+      <option value="+91">+91 </option>
+      
+    </select>
+    <input
+      type="tel"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      if (!/^\d{6,15}$/.test(phone)) {
+            alert("Please enter a valid phone number (6-15 digits)");
+            return;
+          }
+          alert(`Phone number saved: ${countryCode}${phone}`);
+          setIsEditingPhone(false);
+      placeholder="Enter phone number"
+      disabled={!isEditingPhone} // only editable when editing
+    />
+    <button
+      onClick={() => {
+        if (!isEditingPhone) {
+          setPhone(""); 
+          setIsEditingPhone(true);
+        } else {
+          // Validate phone: only digits, length 6-15
+          
+          }
+          alert(`Phone number saved: ${countryCode}${phone}`);
+          setIsEditingPhone(false);
+        }
+      }}
+    >
+      
+            <CiEdit size={28}/></button>
           </div>
         </div>
 
@@ -130,6 +212,14 @@ const handleSave = () => {
       </div>
 
     </div>
+    <ToastContainer 
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+          />
     </div>
   );
 }
