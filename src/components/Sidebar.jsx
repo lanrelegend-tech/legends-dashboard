@@ -7,10 +7,17 @@ import { CiSettings } from "react-icons/ci";
 import { SiLogitech } from "react-icons/si";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
  function Sidebar() {
     const navigate = useNavigate();
+    const handleLogout = () => {
+    localStorage.removeItem("currentUser"); // log out
+    navigate("/LoginPage", { replace: true });   // go to login page
+  };
+
+
   
   return (
     <div className="sidebar">
@@ -22,8 +29,8 @@ import { useNavigate } from "react-router-dom";
             <p onClick={() => navigate ("/TaskPage")}><FaTasks />Tasks</p>
             <p><SlCalender />Calender</p>
             <p onClick={() => navigate("/Profile")}><CiSettings />settings</p>
+            <p onClick={handleLogout}><CiLogout />Logout</p>
         
-        <h3><IoMdHelpCircleOutline /></h3>
     </div>
     
   )

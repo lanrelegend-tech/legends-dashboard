@@ -73,7 +73,7 @@ html, body{
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
+  gap: 8rem;
 }
 .searchbar h1{
   font-size: 2rem;
@@ -83,9 +83,21 @@ html, body{
 .searchbtn{
   border-radius: 20px;
   height: 5vh;
+  padding-right: 4rem;
   width: 20vw;
+  margin-left: -2rem;
   background-color: white;
   padding-left: 2rem;
+}
+.search-icons{
+  background-color: transparent;
+  display: flex;
+  gap: 1rem;
+;
+  align-items: center;
+  border-bottom: 2px solid #1A2517;
+  font-size: 1rem;
+
 }
 /* overview */
 .overview{

@@ -7,16 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 
 function Profile() {
-  const [image, setImage] = useState(null);
-  const fileInputRef = useRef(null);
-
-  // Load saved image
-  useEffect(() => {
+  const [image, setImage] = useState(() => {
     const savedImage = localStorage.getItem("profilePic");
-    if (savedImage) {
-      setImage(savedImage);
-    }
-  }, []);
+    return savedImage || profileImg;
+  });
+  const fileInputRef = useRef(null);
 
   // When image is clicked → open file picker
   const handleImageClick = () => {
@@ -45,6 +40,7 @@ const [isEditing,setIsEditing] =useState(true);
 const [countryCode, setCountryCode] = useState("+1");
 const [phone, setPhone] = useState("");
 const [isEditingPhone, setIsEditingPhone] = useState(false);
+const [address, setAddress] = useState("");
 
 
 useEffect(() => {
@@ -62,6 +58,7 @@ const handleSave = () => {
   const updatedUser = {
     ...user,
     name,
+    profilePic: image,
     email
   };
 
@@ -107,6 +104,7 @@ const handleSave = () => {
         if (e.key === "Enter" &&isEditing) {
           handleSave();
           setIsEditing(false);
+          toast.success("Name saved!");
 
          }
          }} />
@@ -135,7 +133,6 @@ const handleSave = () => {
           return;
         }
 
-        // Save email along with name
         handleSave();
         alert("Email saved!");
         setIsEditing(false);
@@ -160,7 +157,7 @@ const handleSave = () => {
                 <select
       value={countryCode}
       onChange={(e) => setCountryCode(e.target.value)}
-      disabled={!isEditingPhone} // only editable when editing
+      disabled={!isEditingPhone} 
     >
       <option value="+234">+234 </option>
       <option value="+1">+1 </option>
@@ -171,28 +168,29 @@ const handleSave = () => {
     <input
       type="tel"
       value={phone}
-      onChange={(e) => setPhone(e.target.value)}
-      if (!/^\d{6,15}$/.test(phone)) {
-            alert("Please enter a valid phone number (6-15 digits)");
+      onChange={(e) => {
+         const digitsOnly = e.target.value.replace(/\D/g, ""); 
+        setPhone(digitsOnly);
+      }}
+      placeholder="Enter phone number"
+      disabled={!isEditingPhone} 
+       onKeyDown={(e) => {
+        if (e.key === "Enter" && isEditingPhone) {
+          if (!/^\d{6,15}$/.test(phone)) {
+            toast.error("Please enter a valid phone number (6-15 digits)");
             return;
           }
-          alert(`Phone number saved: ${countryCode}${phone}`);
+          toast.success(`Phone number saved: ${countryCode}${phone}`);
           setIsEditingPhone(false);
-      placeholder="Enter phone number"
-      disabled={!isEditingPhone} // only editable when editing
+        }
+      }}      
     />
     <button
       onClick={() => {
-        if (!isEditingPhone) {
           setPhone(""); 
           setIsEditingPhone(true);
-        } else {
-          // Validate phone: only digits, length 6-15
+        
           
-          }
-          alert(`Phone number saved: ${countryCode}${phone}`);
-          setIsEditingPhone(false);
-        }
       }}
     >
       
@@ -204,8 +202,21 @@ const handleSave = () => {
         <div className="profile-field">
           <label>Address</label>
           <div className="field-row">
-            <input type="text" placeholder="123 Main St, City, Country" />
-            <button><CiEdit size={28}/></button>
+            <input type="text" value={address}
+            readOnly={!isEditing}
+            onChange={(e) => setAddress(e.target.value)}
+            onKeyDown={(e) => {
+        if (e.key === "Enter" &&isEditing) {
+          handleSave();
+          setIsEditing(false);
+          toast.success("Address saved!");
+
+         }
+         }} />
+            <button onClick={() => {
+              setAddress("");
+              setIsEditing(true);
+            }}><CiEdit size={28}/></button>
           </div>
         </div>
 
