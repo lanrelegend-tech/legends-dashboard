@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function TaskSummary() {
   // State to hold all tasks  
 
-  const [tasks, setTasks] = useState([
-    { id: 1, name: 'Design Homepage', completed: false },
-    { id: 2, name: 'Fix Bugs', completed: false },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+  const savedTasks = localStorage.getItem("tasks");
+  return savedTasks
+    ? JSON.parse(savedTasks)
+    : [
+        { id: 1, name: "Design Homepage", completed: false, isediting: false },
+        { id: 2, name: "Fix Bugs", completed: false, isediting: false },
+      ];
+});
+
+useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}, [tasks]); // runs whenever tasks change
 
   const [newTask, setNewTask] = useState(''); 
   const [filter, setFilter] = useState('all');
@@ -36,13 +45,12 @@ function TaskSummary() {
     }
   };
 
-  const getFilteredTasks = () => {
-    return tasks.filter(task => {
+  const getFilteredTasks = tasks.filter(task => {
       if (filter === "active") return task.completed;
       if (filter === "inactive") return !task.completed;
-      return true; // "all"
+      return true;
     });
-  };
+
 
   return (
     <div className="task-card">
