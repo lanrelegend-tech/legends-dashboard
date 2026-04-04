@@ -45,11 +45,6 @@ useEffect(() => {
     }
   };
 
-  const getFilteredTasks = tasks.filter(task => {
-      if (filter === "active") return task.completed;
-      if (filter === "inactive") return !task.completed;
-      return true;
-    });
 
 
   return (
@@ -77,7 +72,11 @@ useEffect(() => {
 
 
       {/* Tasks list */}
-      {tasks.map((task) => (
+      {filter === 'all' ? tasks : tasks.filter(task => {
+        if (filter === 'active') return task.completed;
+        if (filter === 'inactive') return !task.completed;
+        return true;
+      }).map((task) => (
         <div className="task-row" key={task.id}>
           <span>
             <input

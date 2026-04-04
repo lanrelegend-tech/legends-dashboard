@@ -9,13 +9,12 @@ function Task() {
     setTasks(savedTask);
   }, []);
   const totalTasks = tasks.length;
-  const completedTasks = tasks.filter(task => task.completed).length;
-
+  const completedTasks = () => tasks.filter(task => task.completed).length;
   return (
     <div id='Task' className='overviewcard'>
         <div ><FaTasks /></div>
         <h1>Tasks</h1>
-        <h2>{completedTasks}/{totalTasks}</h2>
+        <h2>{completedTasks()}/{totalTasks}</h2>
     </div>
   )
 }
