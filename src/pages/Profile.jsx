@@ -37,6 +37,31 @@ function Profile() {
   
   };
 
+  const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+
+
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (user) {
+    setName(user.name);
+    setEmail(user.email);
+  }
+}, []);
+
+const handleSave = () => {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  const updatedUser = {
+    ...user,
+    name,
+    email
+  };
+
+  localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+};
+
   return (
     <div><Sidebar/>
     <div className="page">
@@ -49,7 +74,7 @@ function Profile() {
         {/* Profile Picture */}
         <div className="profile-pic-section">
           <img
-            src={profileImg}
+            src={image || profileImg}
             alt="Profile"
             className="profile-pic"
           />
@@ -69,8 +94,9 @@ function Profile() {
         <div className="profile-field">
           <label>Name</label>
           <div className="field-row">
-            <input type="text" placeholder="Your Name" />
-            <button ><CiEdit size={28}/></button>
+            <input type="text" value={name}
+            onChange={(e) => setName(e.target.value)} />
+            <button onClick={handleSave}><CiEdit size={28}/></button>
           </div>
         </div>
 
@@ -78,7 +104,7 @@ function Profile() {
         <div className="profile-field">
           <label>Email</label>
           <div className="field-row">
-            <input type="email" placeholder="your.email@example.com" />
+            <input type="email" value={email} />
             <button><CiEdit size={28}/></button>
           </div>
         </div>
