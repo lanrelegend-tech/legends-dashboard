@@ -5,9 +5,13 @@ import { useState,useEffect } from 'react';
 function Task() {
     const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    const savedTask = JSON.parse(localStorage.getItem('tasks')) || [];
-    setTasks(savedTask);
-  }, []);
+  try {
+    const savedTask = JSON.parse(localStorage.getItem('tasks'));
+    setTasks(Array.isArray(savedTask) ? savedTask : []);
+  } catch {
+    setTasks([]);
+  }
+}, []);
   const totalTasks = tasks.length;
   const completedTasks = () => tasks.filter(task => task.completed).length;
   return (

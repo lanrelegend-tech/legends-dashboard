@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-function TaskSummary() {
+function TaskSummary({limit}) {
   // State to hold all tasks  
 
   const [tasks, setTasks] = useState(() => {
-  const savedTasks = localStorage.getItem("tasks");
-  return savedTasks
-    ? JSON.parse(savedTasks)
-    : [
-        { id: 1, name: "Design Homepage", completed: false, isediting: false },
-        { id: 2, name: "Fix Bugs", completed: false, isediting: false },
-      ];
+  try {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+    return Array.isArray(savedTasks)
+      ? savedTasks
+      : [
+          { id: 1, name: "Design Homepage", completed: false, isediting: false },
+          { id: 2, name: "Fix Bugs", completed: false, isediting: false },
+        ];
+  } catch {
+    return [
+      { id: 1, name: "Design Homepage", completed: false, isediting: false },
+      { id: 2, name: "Fix Bugs", completed: false, isediting: false },
+    ];
+  }
 });
 
 useEffect(() => {
@@ -19,8 +26,6 @@ useEffect(() => {
 
   const [newTask, setNewTask] = useState(''); 
   const [filter, setFilter] = useState('all');
-   "all", "active", "inactive"
-
 
   const handleAddTask = () => {
     if (newTask.trim() === '') return;
@@ -45,7 +50,11 @@ useEffect(() => {
     }
   };
 
-
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'active') return !task.completed;
+    if (filter === 'inactive') return task.completed;
+    return true;
+  });
 
   return (
     <div className="task-card">
@@ -69,14 +78,8 @@ useEffect(() => {
       </div>
       </div>
 
-
-
       {/* Tasks list */}
-      {filter === 'all' ? tasks : tasks.filter(task => {
-        if (filter === 'active') return task.completed;
-        if (filter === 'inactive') return !task.completed;
-        return true;
-      }).map((task) => (
+      {(limit ? filteredTasks.slice(0, limit) : filteredTasks).map((task) => (
         <div className="task-row" key={task.id}>
           <span>
             <input

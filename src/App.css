@@ -343,6 +343,7 @@ h3{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column-reverse;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }

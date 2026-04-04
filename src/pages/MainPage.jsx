@@ -28,7 +28,7 @@ function Mainpage() {
           <ProjectSummary/>
           <Dashboard/>
         </div>
-        <TaskSumarry/>
+        <TaskSumarry limit={2}/>
       </div>
    
 </div>
