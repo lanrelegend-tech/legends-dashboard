@@ -1,6 +1,22 @@
-import React from 'react'
 
-function ProjectSummary() {
+import {useState,useEffect} from 'react'
+
+function ProjectSummary({limit}) {
+  const [projects, setProjects] = useState([]);
+
+useEffect(() => {
+    const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+    setProjects(storedProjects);
+  }, []);
+  const displyedProjects =  limit ? projects.slice(0, limit) : projects;
+  
+  const handleStatusChange = (projectId, newStatus) => {
+    const updatedProjects = projects.map(project =>
+      project.id === projectId ? { ...project, status: newStatus } : project
+    );
+    setProjects(updatedProjects);
+    localStorage.setItem('projects', JSON.stringify(updatedProjects));
+  };
   return (
     <div className='table-summary'>
       <h2>Project Summary</h2>
@@ -11,44 +27,29 @@ function ProjectSummary() {
               <th>Name</th>
               <th>Project Maneger</th>
               <th>Due date</th>
-              <th>Status</th>
               <th>Priority</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>nana web development</td>
-              <td>micheal</td>
-              <td>2026-04-26</td>
-              <td className='completed'>Completed</td>
-              <td>
-                <div className='circle' data-percentage="100">
-                  <span className='progress-text'>High</span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>nana web development</td>
-              <td>john</td>
-              <td>2026-04-26</td>
-              <td className='ongoing'>Ongoing</td>
-              <td>
-                <div className='circle' data-percentage="50">
-                  <span className='progress-text'>Medium</span>
-                </div>
-              </td>
+            {displyedProjects.map((project, index) => (
+              <tr key={index}>
+                <td>{project.projectName}</td>
+                <td>{project.projectManager}</td>
+                <td>{project.dueDate}</td>
+            
+                <td>{project.priority}
+
+                </td>
+                <td>
+                  <select value={project.status} onChange={(e) => handleStatusChange(project.id, e.target.value)}>
+                    <option value="Not Started" className='completed'>Completed</option>
+                    <option value="In Progress" className='on-going'>on-going</option>
+                    <option value="Completed" className='pending'>Pending</option>
+                  </select>
+                </td>
               </tr>
-              <tr>
-                <td>nana web development</td>
-                <td>solomon</td>
-              <td>2026-04-26</td>
-              <td className='pending'>pending</td>
-              <td>
-                <div className='circle' data-percentage="0">
-                  <span className='progress-text'>Low</span>
-                </div>
-              </td>
-              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -57,3 +58,4 @@ function ProjectSummary() {
 }
 
 export default ProjectSummary;
+            

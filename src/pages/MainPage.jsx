@@ -25,7 +25,7 @@ function Mainpage() {
           <Totalrevenue/>
         </div>
         <div className="project-flex">
-          <ProjectSummary/>
+          <ProjectSummary limit={3}/>
           <Dashboard/>
         </div>
         <TaskSumarry limit={2}/>
