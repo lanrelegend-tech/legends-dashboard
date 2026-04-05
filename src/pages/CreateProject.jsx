@@ -22,7 +22,12 @@ function CreateProject() {
   const handleSubmit = (e) => {    
     e.preventDefault();
     const existingProjects = JSON.parse(localStorage.getItem('projects')) || [];
-    const updatedProjects = [ formData , ...existingProjects ];
+    const newProject = {
+      id: Date.now(),
+      ...formData,
+      status: 'Pending'
+    };
+    const updatedProjects = [ newProject , ...existingProjects ];
     localStorage.setItem('projects', JSON.stringify(updatedProjects));
     toast.success('Project created successfully!');
     setFormData({

@@ -32,8 +32,8 @@ useEffect(() => {
             </tr>
           </thead>
           <tbody>
-            {displyedProjects.map((project, index) => (
-              <tr key={index}>
+            {displyedProjects.map((project) => (
+              <tr key={project.id}>
                 <td>{project.projectName}</td>
                 <td>{project.projectManager}</td>
                 <td>{project.dueDate}</td>
@@ -43,9 +43,9 @@ useEffect(() => {
                 </td>
                 <td>
                   <select value={project.status} onChange={(e) => handleStatusChange(project.id, e.target.value)}>
-                    <option value="Not Started" className='completed'>Completed</option>
-                    <option value="In Progress" className='on-going'>on-going</option>
-                    <option value="Completed" className='pending'>Pending</option>
+                    <option value="Completed" className='completed'>Completed</option>
+                    <option value="In Progress" className='on-going'>In Progress</option>
+                    <option value="Pending" className='pending'>Pending</option>
                   </select>
                 </td>
               </tr>
