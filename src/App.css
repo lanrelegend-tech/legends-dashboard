@@ -180,18 +180,12 @@ th,td {
   font-size: 0.8rem;
   
 }
-.completed{
-  color: green;
+.selection{
+  color: black;
   font-weight: bold;
+  background-color: white;
 }
-.ongoing{
-  color: yellow;
-  font-weight: bold;
-}
-.undone{
-  color: red;
-  font-weight: bold;
-} 
+
 /*project flex*/
 .project-flex{
   display: flex;

@@ -23,9 +23,10 @@ function CreateProject() {
     e.preventDefault();
     const existingProjects = JSON.parse(localStorage.getItem('projects')) || [];
     const newProject = {
-      id: Date.now(),
       ...formData,
-      status: 'Pending'
+      id: Date.now(),
+      status: 'pending',
+      deposit: parseFloat(formData.deposit) ||  0
     };
     const updatedProjects = [ newProject , ...existingProjects ];
     localStorage.setItem('projects', JSON.stringify(updatedProjects));
@@ -35,10 +36,15 @@ function CreateProject() {
       projectManager: '',
       dueDate: '',
       deposit: '',
+      status: 'pending',
       priority: 'low',
       description: ''
     });
   };
+
+ 
+
+ 
   return (
   
     <div >
@@ -54,7 +60,10 @@ function CreateProject() {
         <label htmlFor="project-due-date">Due date:</label>
         <input type="date" value={formData.dueDate} onChange={handleChange}  id="dueDate" className="project-input" required />
         <label htmlFor="project-deposit">Deposit:</label>
-        <input type='text' value={formData.deposit} onChange={handleChange} id='deposit' className='project-input' required />
+        <div className='input-wrapper'>
+          <span className='currency-symbol'>$</span>
+          <input type="number" value={formData.deposit} onChange={handleChange} id="deposit" className="project-input deposit-input" required />
+        </div>
         <label htmlFor="project-priority">Priority:</label>
         <select value={formData.priority} onChange={handleChange} id="priority" className="project-input">
           <option value="low">Low</option>

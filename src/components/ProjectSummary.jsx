@@ -8,12 +8,18 @@ useEffect(() => {
     const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
     setProjects(storedProjects);
   }, []);
-  const displyedProjects =  limit ? projects.slice(0, limit) : projects;
+  const displayedProjects =  limit ? projects.slice(0, limit) : projects;
   
   const handleStatusChange = (projectId, newStatus) => {
     const updatedProjects = projects.map(project =>
       project.id === projectId ? { ...project, status: newStatus } : project
     );
+    setProjects(updatedProjects);
+    localStorage.setItem('projects', JSON.stringify(updatedProjects));
+  };
+
+   const handleDelete = (projectId) => {
+    const updatedProjects = projects.filter(project => project.id !== projectId);
     setProjects(updatedProjects);
     localStorage.setItem('projects', JSON.stringify(updatedProjects));
   };
@@ -32,7 +38,7 @@ useEffect(() => {
             </tr>
           </thead>
           <tbody>
-            {displyedProjects.map((project) => (
+            {displayedProjects.map((project) => (
               <tr key={project.id}>
                 <td>{project.projectName}</td>
                 <td>{project.projectManager}</td>
@@ -42,12 +48,16 @@ useEffect(() => {
 
                 </td>
                 <td>
-                  <select value={project.status} onChange={(e) => handleStatusChange(project.id, e.target.value)}>
-                    <option value="Completed" className='completed'>Completed</option>
-                    <option value="In Progress" className='on-going'>In Progress</option>
-                    <option value="Pending" className='pending'>Pending</option>
+                  <select value={project.status} onChange={(e) => handleStatusChange(project.id, e.target.value)} className='selection'>
+                    <option value="Pending" >Pending</option>
+                    <option value="In Progress" >In Progress</option>
+                    <option value="Completed" >Completed</option>
                   </select>
                 </td>
+                <td><button onClick={() => handleDelete(project.id)} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer', borderRadius: '4px' }}
+                  >
+                    Delete
+                  </button> </td>
               </tr>
             ))}
           </tbody>
