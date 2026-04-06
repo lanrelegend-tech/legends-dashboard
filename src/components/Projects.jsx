@@ -1,20 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react';
 import { GrProjects } from "react-icons/gr";
-import { useState,useEffect } from 'react';
+import { AppContext } from './AppContext';
 
 function Projects() {
-  const [projectCount, setProjectCount] = useState(0);
-
-  useEffect(() => {
-    const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
-    setProjectCount(storedProjects.length);
-  }, []);
+  const { projects } = useContext(AppContext);
 
   return (
     <div id='Projects' className='overviewcard'>
         <div><GrProjects /></div>
         <h1>Projects</h1>
-        <h2>{projectCount}</h2>
+        <h2>{projects.length}</h2>
     </div>
   )
 }

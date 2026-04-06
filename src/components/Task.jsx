@@ -1,9 +1,10 @@
 import React from 'react'
 import { FaTasks } from "react-icons/fa";
-import { useState,useEffect } from 'react';
+import { useContext,useEffect } from 'react';
+import { AppContext } from '../components/AppContext';
 
 function Task() {
-    const [tasks, setTasks] = useState([]);
+    const { tasks, setTasks } = useContext(AppContext);
   useEffect(() => {
   try {
     const savedTask = JSON.parse(localStorage.getItem('tasks'));
@@ -11,7 +12,7 @@ function Task() {
   } catch {
     setTasks([]);
   }
-}, []);
+}, [setTasks]);
   const totalTasks = tasks.length;
   const completedTasks = () => tasks.filter(task => task.completed).length;
   return (

@@ -1,117 +1,210 @@
 import React, { useState, useEffect } from 'react';
+import {
+  DndContext,
+  closestCenter
+} from "@dnd-kit/core";
 
-function TaskSummary({limit}) {
-  // State to hold all tasks  
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  useSortable,
+  arrayMove
+} from "@dnd-kit/sortable";
 
+import { CSS } from "@dnd-kit/utilities";
+
+/* ✅ Draggable Task Row */
+function SortableItem({ task, tasks, setTasks, handleChange, handleKeyDown }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition
+  } = useSortable({ id: task.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="task-row"
+    >
+      <span>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => {
+            setTasks(tasks.map(t =>
+              t.id === task.id ? { ...t, completed: !t.completed } : t
+            ));
+          }}
+        />
+
+        {task.isediting ? (
+          <input
+            type="text"
+            value={task.name}
+            style={{ background: 'none', border: 'none', color: 'black', outline: 'none' }}
+            onChange={(e) => handleChange(task.id, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(e, task.id)}
+            autoFocus
+          />
+        ) : (
+          task.name
+        )}
+      </span>
+
+      <div className="actions">
+
+        <button
+          className="btn edit"
+          onClick={() => {
+            setTasks(tasks.map(t =>
+              t.id === task.id ? { ...t, isediting: true } : t
+            ));
+          }}
+        >
+          Edit
+        </button>
+
+        <button
+          className="btn delete"
+          onClick={() => {
+            setTasks(tasks.filter(t => t.id !== task.id));
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function TaskSummary({ limit }) {
+
+  /* ✅ LOAD TASKS */
   const [tasks, setTasks] = useState(() => {
-  try {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
-    return Array.isArray(savedTasks)
-      ? savedTasks
-      : [
-          { id: 1, name: "Design Homepage", completed: false, isediting: false },
-          { id: 2, name: "Fix Bugs", completed: false, isediting: false },
-        ];
-  } catch {
-    return [
-      { id: 1, name: "Design Homepage", completed: false, isediting: false },
-      { id: 2, name: "Fix Bugs", completed: false, isediting: false },
-    ];
-  }
-});
+    try {
+      const saved = JSON.parse(localStorage.getItem("tasks"));
+      return Array.isArray(saved)
+        ? saved
+        : [
+            { id: 1, name: "Design Homepage", completed: false, isediting: false },
+            { id: 2, name: "Fix Bugs", completed: false, isediting: false },
+          ];
+    } catch {
+      return [
+        { id: 1, name: "Design Homepage", completed: false, isediting: false },
+        { id: 2, name: "Fix Bugs", completed: false, isediting: false },
+      ];
+    }
+  });
 
-useEffect(() => {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}, [tasks]); // runs whenever tasks change
+  /* ✅ SAVE TASKS */
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
-  const [newTask, setNewTask] = useState(''); 
+  const [newTask, setNewTask] = useState('');
   const [filter, setFilter] = useState('all');
 
+  /* ✅ ADD TASK */
   const handleAddTask = () => {
     if (newTask.trim() === '') return;
 
     const nextTask = {
-      id: Date.now(), 
+      id: Date.now(),
       name: newTask,
       completed: false,
+      isediting: false
     };
 
-    setTasks([ nextTask, ...tasks]);
+    setTasks([nextTask, ...tasks]);
     setNewTask('');
   };
 
+  /* ✅ EDIT TASK */
   const handleChange = (id, value) => {
-    setTasks(tasks.map(t => t.id === id ? {...t, name: value} : t));
+    setTasks(tasks.map(t =>
+      t.id === id ? { ...t, name: value } : t
+    ));
   };
 
   const handleKeyDown = (e, id) => {
     if (e.key === 'Enter') {
-      setTasks(tasks.map(t => t.id === id ? {...t, isediting: false} : t));
+      setTasks(tasks.map(t =>
+        t.id === id ? { ...t, isediting: false } : t
+      ));
     }
   };
 
+  /* ✅ FILTER */
   const filteredTasks = tasks.filter(task => {
     if (filter === 'active') return !task.completed;
     if (filter === 'inactive') return task.completed;
     return true;
   });
 
+  /* ✅ DRAG LOGIC */
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = tasks.findIndex(t => t.id === active.id);
+    const newIndex = tasks.findIndex(t => t.id === over.id);
+
+    setTasks(arrayMove(tasks, oldIndex, newIndex));
+  };
+
   return (
     <div className="task-card">
       <h3>Task Summary</h3>
 
-      {/* Filters */}
+      {/* FILTERS + ADD */}
       <div className="filters">
-        <button className="filter-btn active" style={{color:'black'}} onClick={() => setFilter('all')}>All</button>
-        <button className="filter-btn" style={{color:'black'}} onClick={() => setFilter('active')}>Active</button>
-        <button className="filter-btn" style={{color:'black'}} onClick={() => setFilter('inactive')}>Inactive</button>
+        <button onClick={() => setFilter('all')} className={`filter-btn ${filter === 'all' ? 'active' : ''}`}>All</button>
+        <button onClick={() => setFilter('active')} className={`filter-btn ${filter === 'active' ? 'active' : ''}`}>Active</button>
+        <button onClick={() => setFilter('inactive')} className={`filter-btn ${filter === 'inactive' ? 'active' : ''}`}>Inactive</button>
+
         <div style={{ marginLeft: '3rem' }}>
-        <input
-          type="text"
-          placeholder="New task"
-          value={newTask}
-          className='filter-btn'
-          style={{color:"black"}}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <button onClick={handleAddTask} className='filter-btn' style={{color:"white",backgroundColor:"#1A2517" }}>Add</button>
-      </div>
+          <input
+            type="text"
+            placeholder="New task"
+            value={newTask}
+            className='filter-btn'
+            onChange={(e) => setNewTask(e.target.value)}
+          />
+          <button onClick={handleAddTask} className='filter-btn' style={{backgroundColor:'grey'}}>Add</button>
+        </div>
       </div>
 
-      {/* Tasks list */}
-      {(limit ? filteredTasks.slice(0, limit) : filteredTasks).map((task) => (
-        <div className="task-row" key={task.id}>
-          <span>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => {
-                setTasks(tasks.map(t => t.id === task.id ? {...t, completed: !t.completed} : t));
-              }}
+      {/* ✅ DRAG AREA */}
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext
+          items={tasks.map(t => t.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          {(limit ? filteredTasks.slice(0, limit) : filteredTasks).map(task => (
+            <SortableItem
+              key={task.id}
+              task={task}
+              tasks={tasks}
+              setTasks={setTasks}
+              handleChange={handleChange}
+              handleKeyDown={handleKeyDown}
             />
-            {task.isediting ? (
-              <input
-                type="text"
-                value={task.name}
-                style={{background:'none',border:'none',color:'black',outline:'none'}}
-                onChange={(e) => handleChange(task.id, e.target.value)}
-                onKeyDown={(e) =>handleKeyDown(e,task.id)}
-                autoFocus
-              />
-            ) :(
-            task.name)}
-          </span>
-          <div className="actions">
-            <button className="btn view">View</button>
-            <button className="btn edit" onClick={() => {
-              setTasks(tasks.map(t => t.id === task.id ? {...t, isediting: true} : t));
-            }}>Edit</button>
-            <button className="btn delete" onClick={() => {
-              setTasks(tasks.filter(t => t.id !== task.id));
-            }}>Delete</button>
-          </div>
-        </div>
-      ))}
+          ))}
+        </SortableContext>
+      </DndContext>
+
     </div>
   );
 }

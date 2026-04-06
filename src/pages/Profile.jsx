@@ -36,7 +36,7 @@ function Profile() {
 
   const [name, setName] = useState("");
 const [email, setEmail] = useState("");
-const [isEditing,setIsEditing] =useState(true);
+const [isEditing,setIsEditing] =useState(false);
 const [countryCode, setCountryCode] = useState("+1");
 const [phone, setPhone] = useState("");
 const [isEditingPhone, setIsEditingPhone] = useState(false);
@@ -49,6 +49,9 @@ useEffect(() => {
   if (user) {
     setName(user.name);
     setEmail(user.email);
+    setPhone(user.phone || "");
+    setCountryCode(user.countryCode || "+1");
+    setAddress(user.address || "");
   }
 }, []);
 
@@ -58,6 +61,8 @@ const handleSave = () => {
   const updatedUser = {
     ...user,
     name,
+    phone: `${countryCode}${phone}`,
+    address,
     profilePic: image,
     email
   };
@@ -98,7 +103,7 @@ const handleSave = () => {
           <label>Name</label>
           <div className="field-row">
             <input type="text" value={name}
-            readOnly={!isEditing}
+            disabled={!isEditing}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
         if (e.key === "Enter" &&isEditing) {
@@ -134,7 +139,7 @@ const handleSave = () => {
         }
 
         handleSave();
-        alert("Email saved!");
+        toast.success("Email saved!");
         setIsEditing(false);
       
     
@@ -180,6 +185,13 @@ const handleSave = () => {
             toast.error("Please enter a valid phone number (6-15 digits)");
             return;
           }
+          const user = JSON.parse(localStorage.getItem("currentUser")) || {} ;
+          const updatedUser = {
+            ...user,
+            countryCode,
+            phone
+          };
+          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
           toast.success(`Phone number saved: ${countryCode}${phone}`);
           setIsEditingPhone(false);
         }
