@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TiPlus } from "react-icons/ti";
 import {
   DndContext,
   closestCenter
@@ -179,15 +180,15 @@ function TaskSummary({ limit }) {
         <button onClick={() => setFilter('active')} className={`filter-btn ${filter === 'active' ? 'active' : ''}`}>Active</button>
         <button onClick={() => setFilter('inactive')} className={`filter-btn ${filter === 'inactive' ? 'active' : ''}`}>Inactive</button>
 
-        <div >
+        <div className='task-input'>
           <input
             type="text"
             placeholder="New task"
             value={newTask}
-            className='filter-btn'
+            className='task-input-item'
             onChange={(e) => setNewTask(e.target.value)}
           />
-          <button onClick={handleAddTask} className='filter-btn' style={{backgroundColor:'grey'}}>Add</button>
+          <button onClick={handleAddTask} className='task-input-add' style={{backgroundColor:'grey'}}><TiPlus/></button>
         </div>
       </div>
 
