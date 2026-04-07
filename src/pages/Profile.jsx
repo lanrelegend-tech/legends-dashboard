@@ -173,67 +173,62 @@ const handleThemeToggle = () => {
         </div>
 
         {/* Phone Number */}
-        <div className="profile-field">
-          <label>Phone Number</label>
-          <div className="field-row">
-            <div className="number">
-                <select
-      value={countryCode}
+       
+ <div className="profile-field">
+  <label>Phone Number</label>
+
+  <div className="field-row phone-row">
     
-      
+    <select
+      value={countryCode}
       onChange={(e) => setCountryCode(e.target.value)}
-      disabled={!isEditingPhone} 
+      disabled={!isEditingPhone}
     >
-      <option value="+234">+234 </option>
-      <option value="+1">+1 </option>
-      <option value="+44">+44 </option>
-      <option value="+91">+91 </option>
-      
+      <option value="+234">+234</option>
+      <option value="+1">+1</option>
+      <option value="+44">+44</option>
+      <option value="+91">+91</option>
     </select>
+
     <input
       type="tel"
       value={phone}
-      className="number
-    "
       onChange={(e) => {
-         const digitsOnly = e.target.value.replace(/\D/g, ""); 
+        const digitsOnly = e.target.value.replace(/\D/g, "");
         setPhone(digitsOnly);
       }}
       placeholder="Enter phone number"
-      disabled={!isEditingPhone} 
-       onKeyDown={(e) => {
+      disabled={!isEditingPhone}
+      onKeyDown={(e) => {
         if (e.key === "Enter" && isEditingPhone) {
           if (!/^\d{6,15}$/.test(phone)) {
-            toast.error("Please enter a valid phone number (6-15 digits)");
+            toast.error("Enter valid phone (6–15 digits)");
             return;
           }
-          const user = JSON.parse(localStorage.getItem("currentUser")) || {} ;
-          const updatedUser = {
-            ...user,
-            countryCode,
-            phone
-          };
-          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-          toast.success(`Phone number saved: ${countryCode}${phone}`);
+
+          const user = JSON.parse(localStorage.getItem("currentUser")) || {};
+          localStorage.setItem(
+            "currentUser",
+            JSON.stringify({ ...user, countryCode, phone })
+          );
+
+          toast.success(`Saved: ${countryCode}${phone}`);
           setIsEditingPhone(false);
         }
-      }}      
+      }}
     />
+
     <button
-    className="number"
       onClick={() => {
-          setPhone(""); 
-        
-          setIsEditingPhone(true);
-        
-          
+        setPhone("");
+        setIsEditingPhone(true);
       }}
     >
-      
-            <CiEdit size={28}/></button>
-          </div>
-          </div>
-        </div>
+      <CiEdit size={22} />
+    </button>
+
+  </div>
+</div>
 
         {/* Address */}
         <div className="profile-field">

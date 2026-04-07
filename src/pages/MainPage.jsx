@@ -9,8 +9,24 @@ import ProjectSummary from "../components/ProjectSummary";
 import Dashboard from "../components/Dashboard";
 import TaskSumarry from "../components/TaskSumarry";
 import {motion} from "framer-motion" ;
+import MainPageSkeleton from "../components/MainPageSkeleton"; // adjust path if needed
+import { useState, useEffect } from "react";
 
 function Mainpage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  // 👇 THIS SWITCHES BETWEEN SKELETON AND REAL UI
+  if (loading) {
+    return <MainPageSkeleton />;
+  }
+
+  
   return (
   
       <div className="app">

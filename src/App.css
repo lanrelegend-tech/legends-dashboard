@@ -646,6 +646,7 @@ h3{
   padding: 0.5rem;
   border-radius: 10px;
   margin-left: -1rem;
+  color: green;
 }
 .profile-card h2 {
   text-align: center;
@@ -681,7 +682,7 @@ h3{
   
   display: flex;
   flex-direction: column;
-  align-items: flex-start !important;
+
 }
 
 .profile-field label {
@@ -695,39 +696,34 @@ h3{
 
 .field-row {
   display: flex;
+  align-items: center;
   gap: 10px;
-
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .field-row input {
-
+  flex: 1; /* 🔥 THIS IS THE FIX */
   padding: 10px;
-  width: 10vw !important;
-  background-color: red;
   border-radius: 8px;
   border: 1px solid var(--text-color);
 }
 
-/* Buttons */
+.field-row select {
+  width: 40px;
+}
+
 .field-row button {
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
-  color: #ACC8A2;
+  outline: none;
+  border: none;
+  color: green;
 }
-
 /* Responsive */
-@media (max-width: 500px) {
-  .field-row {
-    flex-direction: column;
-    gap: 5px;
-  }
 
-  .field-row button {
-    width: 100%;
-  }
-}
 
 
 
@@ -782,7 +778,7 @@ h3{
     
   }
   .table-summary{
-    width: 100%;
+
     padding: 1rem;
     margin-left: -2rem;
     margin-right: 1rem;
@@ -790,12 +786,11 @@ h3{
   
   }
 
-  .overview-card{
-    width: 80%;
-    ;
+  
 
   
-  }
+  
+  
   
   .task-card{
     width: 97%;
@@ -807,7 +802,9 @@ h3{
   }
   .filters {
   display: flex;
-  gap: 1px;
+  gap: 0.5rem;
+  margin-left: -1.6rem;
+  padding-right: 2rem;
 }
 
 .filter-btn {
@@ -817,7 +814,7 @@ h3{
   background: #ffffff00;
   border-radius: 20px;
   height: 2rem;
-  width: 3rem;
+
   cursor: pointer;
   font-size: 0.7rem;
   
@@ -828,7 +825,9 @@ h3{
 .task-input{
   display: flex;
   flex-direction: row !important;
-  margin-right: 1rem;
+  width: 100%;
+  margin-left: 1rem;
+  
 
 
 
@@ -867,9 +866,10 @@ h3{
     margin-top: 2rem;
   }
   .create-project-form{
-    width: 60%;
+    width: 80vw !important;
     margin: auto;
     margin-top: 2rem;
+    margin-left: 2rem !important;
   }
   .field-row {
     width: 70vw;
@@ -884,8 +884,7 @@ h3{
     display: flex;
     flex-direction: row;
   }
-  .field-row button{
-    color: #000000;
+  
     
   }
   .login{
@@ -900,7 +899,7 @@ h3{
     margin-left: 2.5rem;
   
   }
-}
+
   
 
 
