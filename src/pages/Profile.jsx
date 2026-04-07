@@ -114,6 +114,7 @@ const handleThemeToggle = () => {
           <label>Name</label>
           <div className="field-row">
             <input type="text" value={name}
+            className="name"
             disabled={!isEditing}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
@@ -124,7 +125,9 @@ const handleThemeToggle = () => {
 
          }
          }} />
-            <button onClick={() => {
+            <button
+            className="name"
+             onClick={() => {
               setName("");
               setIsEditing(true);
             }}><CiEdit size={28}/></button>
@@ -138,6 +141,7 @@ const handleThemeToggle = () => {
         
  <input type="text" value={email}
             readOnly={!isEditing}
+            className="email"
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => {
         if (e.key === "Enter" &&isEditing) {
@@ -159,7 +163,9 @@ const handleThemeToggle = () => {
 
          }
          }} />
-            <button onClick={() => {
+            <button 
+            className="email"
+            onClick={() => {
               setEmail("");
               setIsEditing(true);
             }}><CiEdit size={28}/></button>
@@ -170,8 +176,11 @@ const handleThemeToggle = () => {
         <div className="profile-field">
           <label>Phone Number</label>
           <div className="field-row">
+            <div className="number">
                 <select
       value={countryCode}
+    
+      
       onChange={(e) => setCountryCode(e.target.value)}
       disabled={!isEditingPhone} 
     >
@@ -184,6 +193,8 @@ const handleThemeToggle = () => {
     <input
       type="tel"
       value={phone}
+      className="number
+    "
       onChange={(e) => {
          const digitsOnly = e.target.value.replace(/\D/g, ""); 
         setPhone(digitsOnly);
@@ -209,8 +220,10 @@ const handleThemeToggle = () => {
       }}      
     />
     <button
+    className="number"
       onClick={() => {
           setPhone(""); 
+        
           setIsEditingPhone(true);
         
           
@@ -219,6 +232,7 @@ const handleThemeToggle = () => {
       
             <CiEdit size={28}/></button>
           </div>
+          </div>
         </div>
 
         {/* Address */}
@@ -226,6 +240,7 @@ const handleThemeToggle = () => {
           <label>Address</label>
           <div className="field-row">
             <input type="text" value={address}
+            className="address"
             readOnly={!isEditing}
             onChange={(e) => setAddress(e.target.value)}
             onKeyDown={(e) => {
@@ -236,7 +251,9 @@ const handleThemeToggle = () => {
 
          }
          }} />
-            <button onClick={() => {
+            <button 
+            className="address"
+            onClick={() => {
               setAddress("");
               setIsEditing(true);
             }}><CiEdit size={28}/></button>

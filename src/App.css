@@ -46,7 +46,7 @@ html, body{
   min-height: 100vh;
 }
 .main{
-  margin-left: 230px;
+  margin-left: 14.8rem;
   min-height: 100vh;
 }
 
@@ -59,7 +59,7 @@ html, body{
   justify-content: flex-start;
   background-color: var(--pages-bg);
   height: 100%;
-  width: 15%;
+  width: 240px;
   padding: 2rem;
   padding-top: 1rem;
   
@@ -73,6 +73,7 @@ html, body{
 .sidebar h1{
   color: #ACC8A2;
   font-size: 1rem;
+
   
 
 }
@@ -116,29 +117,31 @@ html, body{
   background-color: transparent;
   display: flex;
   margin-top: -1rem;
-  width: 80%;
+  width: 100%;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  gap: 8rem;
-  margin-left: 2rem;
+  gap: 120px;
+  margin-left: 1rem;
 }
 .searchbar h1{
   font-size: 1rem;
   font-family: monospace;
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
   color: var(--search-text);
+  margin-right: 20px;
+  margin-top: 3rem;
 
 }
 .searchbtn{
   border-radius: 20px;
   height: 5vh;
-  padding-right: 4rem;
-  width: 20vw;
-  margin-left: -2rem;
+  padding-right: 3rem;
+  width: 27vw;
+  margin-left: -2.3rem;
   background-color: var(--summary-bg);
-  padding-left: 2rem;
+  padding-left: 18px;
   border: none;
   color: var(--search-text);
 }
@@ -146,11 +149,11 @@ html, body{
   background-color: transparent;
   display: flex;
   gap: 1rem;
-;
   align-items: center;
   border-bottom: 2px solid var(--search-text);
   font-size: 1rem;
   color: var(--search-text);
+  margin-left: 3px;
 
 }
 /* overview */
@@ -183,7 +186,7 @@ html, body{
   border-radius: 20px;
   padding: 1rem;
   display: flex;
-  height: 20vh;
+  height: 10%;
   flex-direction: column;
   align-items: center;
 background:var(--card-bg);
@@ -245,6 +248,7 @@ th,td {
   gap: 1rem;
   margin-top: -3rem;
   flex-wrap: wrap;
+  margin: auto;
 }
 
 /* dashboard*/
@@ -370,9 +374,9 @@ h3{
 .create-project-form {
   background-color:var(--pages-bg);
   width: 40%;
-  margin-left: 14rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-left: 290px;
+  margin-top: 30px;
+  margin-bottom: 100px;
   border-radius: 20px;
   padding: 2rem;
   
@@ -391,13 +395,16 @@ h3{
   color: white;
 }
 .project-input {
-  padding: 0.7rem;
+  padding: 0.9rem;
   border-radius: 10px;
   border: none;
+
+  
 }
 .project-input:focus {
   outline: none;
   box-shadow: 0 0 5px #4caf50;
+
 }
 .create-btn {
   background-color: var(--button-bg);
@@ -487,7 +494,7 @@ h3{
   height: 2rem;
   width: 4rem;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: o.5rem;
   justify-content: center;
   color: var(--secondary-text);
 }
@@ -542,7 +549,7 @@ h3{
   width: 40%;
   justify-content: center;
   margin-top: 3rem;
-  margin-left: 14rem;
+  margin: auto;
   margin-bottom: 3rem;
   border-radius: 20px;
   padding-bottom: 2rem;
@@ -623,8 +630,8 @@ h3{
 /* Card */
 .profile-card {
   width: 40%;
-  margin-left: 14rem;
-  margin-top: 2rem;
+  margin-left: 290px;
+  margin-top: 50px;
   margin-bottom: 3rem;
   
   background: var(--pages-bg);
@@ -674,7 +681,7 @@ h3{
   
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start !important;
 }
 
 .profile-field label {
@@ -689,20 +696,20 @@ h3{
 .field-row {
   display: flex;
   gap: 10px;
-  align-items: center;
+
 }
 
 .field-row input {
-  flex: 1;
+
   padding: 10px;
-  width: 20vw;
+  width: 10vw !important;
+  background-color: red;
   border-radius: 8px;
   border: 1px solid var(--text-color);
 }
 
 /* Buttons */
 .field-row button {
-  padding: 10px 15px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -734,7 +741,7 @@ h3{
 
 /* responsive */
 
-@media (max-width:768px) {
+@media (max-width:767px) {
   .sidebar{
     display: none;
   }
@@ -750,23 +757,29 @@ h3{
   .overview h2{
     margin-top: -1rem;
   }
-  .searchbar{
-    gap: 2rem;
-    width: 100%;
-    margin-right: 4rem;
-    margin-left: -1rem;
+  .searchbar{   
+    width: 90vw;
+  
+    margin-left: -2rem;
     
      
   
   }
   .searchbar h1{
-    font-size: 1rem;
+    font-size: 1rem !important;
     margin-top: 3rem;
-    margin-right: 7rem;
+    margin-left: 2rem;
+
+  
+  }
+  .search-icons{
+    margin-left: 30px;
   }
   .searchbtn{
-    width: 70%;
+    margin-right: -100px;
     display: none;
+
+    
   }
   .table-summary{
     width: 100%;
@@ -778,8 +791,9 @@ h3{
   }
 
   .overview-card{
-    width: 70%;
-    margin-left: 1.5rem;
+    width: 80%;
+    ;
+
   
   }
   
@@ -829,7 +843,7 @@ h3{
   color: black;
   padding: 0.5rem 0.5rem;
   background-color: white;
-  width: 5rem;
+  width: 6rem !important;
   
 
 
@@ -848,8 +862,8 @@ h3{
   
   .profile-card{
     margin-bottom: 2rem;
-    width: 60%;
-    margin: auto;
+    width: 90vw !important;
+    margin-left: 1rem !important;
     margin-top: 2rem;
   }
   .create-project-form{
@@ -857,26 +871,118 @@ h3{
     margin: auto;
     margin-top: 2rem;
   }
+  .field-row {
+    width: 70vw;
+    display: flex;
+    height: 10vh;
+    
+  }
+  .number{
+    display: flex;
+  }
+  .email{
+    display: flex;
+    flex-direction: row;
+  }
+  .field-row button{
+    color: #000000;
+    
+  }
   .login{
     width: 80%;
     margin: auto;
     margin-top: 2rem;
     padding: 0 1rem;
+    margin-left: 2rem;
   }
   .google-btn{
     width: 70%;
-    margin-left: 2.3rem;
+    margin-left: 2.5rem;
   
   }
+}
   
 
 
 
 
 /*tablet*/
-@media (max-width:839px) {
+@media (max-width:1024px) {
+  .login{
+  
+    margin: auto;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+  .profile-card{
+    margin-left: 16rem;
+  }
+  .sidebar{
+    width: 200px;
+  }
+  .table-summary{
+    margin-left: -1rem;
+    margin-right: 1rem;
+  
+  }
+  .overview-card{
+    width: 60%;
+    margin-left: 6rem;
+  }
+  .task-card{
+    width: 95%;
+    margin-left: -1rem;
+  }
+  .task-input-item{
+    width: 12rem;
+  }
+  
+  .overview h2{
+    margin-top: 1rem;
+  }
+  .overview h1{
+    margin-top: 3rem;
+  }
+  .profile-card{
+    width: 60%;
+  }
+  .field-row input{
+    width: 35vw;
+  }
+  .create-project-form{
+    width: 50%;
+    margin-left: 240px;
+    margin-top: 50px;
+  
+  }
+  .searchbar{
+    margin-top:-0.9rem;
+    
+    gap: 5rem;
+  }
+  .searchbtn{
+    height: 2rem
+  
+
+    
+  }
+  .search-icons{
+    margin-right: 40px;
+  }
+  .searchbar h1{
+
+  
+    margin-top: 3rem;
+  }
+   .google-btn{
+    width: 70%;
+    margin-left: 2.2rem;
 
 
   }
+  .user-input{
+    width: 75%;
+  }
   
 }
+  

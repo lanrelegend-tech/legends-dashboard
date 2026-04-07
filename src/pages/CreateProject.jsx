@@ -61,6 +61,7 @@ function CreateProject() {
             <label htmlFor="projectName">Project Name:</label>
             <input
               type="text"
+              style={{fontSize:'1.3rem'}}
               value={formData.projectName}
               onChange={handleChange}
               id="projectName"
@@ -70,6 +71,7 @@ function CreateProject() {
             <label htmlFor="projectManager">Project Manager:</label>
             <input
               type="text"
+              style={{fontSize:'1.3rem'}}
               value={formData.projectManager}
               onChange={handleChange}
               id="projectManager"
@@ -80,6 +82,7 @@ function CreateProject() {
             <input
               type="date"
               value={formData.dueDate}
+              style={{fontSize:'1rem'}}
               onChange={handleChange}
               id="dueDate"
               required
@@ -90,16 +93,20 @@ function CreateProject() {
               <span className="currency-symbol">$</span>
               <input
                 type="number"
+                style={{fontSize:'1.3rem'}}
                 value={formData.deposit}
                 onChange={handleChange}
+                rows={5}
                 id="deposit"
                 required
+                
               />
             </div>
 
             <label htmlFor="priority">Priority:</label>
             <select
               value={formData.priority}
+              style={{fontSize:'1.3rem'}}
               onChange={handleChange}
               id="priority"
             >
@@ -115,7 +122,7 @@ function CreateProject() {
               value={formData.description}
               onChange={handleChange}
               id="description"
-              rows={4}
+              rows={5}
             />
           </div>
 
