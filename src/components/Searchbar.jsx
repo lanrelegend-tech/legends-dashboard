@@ -32,15 +32,16 @@ function Searchbar() {
         <motion.h1 initial={{ x: -200, opacity: 0 }}      // start left, invisible
       animate={{ x: 0, opacity: 1 }}         // slide to position, fade in
       transition={{ duration: 0.5 }}          // slide duration
-      style={{ fontSize: "1.3rem", fontWeight: "bold" ,color:'black',overflow: 'hidden', whiteSpace: 'nowrap' }}
+      style={{ fontSize: "1.3rem", fontWeight: "bold" ,overflow: 'hidden', whiteSpace: 'nowrap' }}
   >Dashboard</motion.h1>
         <input className='searchbtn'
         type='text'
+        color='--search-text'
         placeholder='search...'
         />
         <div className='search-icons'>
-          <CiUser style={{color:'#1A2517'}}/>
-          <span style={{color:'#1A2517'}}>{userName}</span>
+          <CiUser style={{color:'var(--search-text)'}}/>
+          <span style={{color:'var(--search-text)'}}>{userName}</span>
           </div>
 
 

@@ -53,6 +53,8 @@ useEffect(() => {
     setCountryCode(user.countryCode || "+1");
     setAddress(user.address || "");
   }
+  const savedTheme = localStorage.getItem("selectedTheme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
 }, []);
 
 const handleSave = () => {
@@ -70,12 +72,21 @@ const handleSave = () => {
   localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 };
 
+// Add this inside your Profile component, but **outside of return()**
+const handleThemeToggle = () => {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("selectedTheme", newTheme);
+
+  toast.success(`Switched to ${newTheme} mode`);
+};
   return (
     <div><Sidebar/>
     <div className="page">
 
       <div className="profile-card">
-         <button className='toogle'>toogle theme</button>
+         <button className='toogle' onClick={handleThemeToggle}>Toggle Theme</button>
         <h2>Profile</h2>
         
 
@@ -246,6 +257,7 @@ const handleSave = () => {
     </div>
   );
 }
+;
 
 export default Profile;
 

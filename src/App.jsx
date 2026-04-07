@@ -14,6 +14,10 @@ import "./App.css";
 
 
 function App() {
+   const savedTheme = localStorage.getItem("selectedTheme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+
+  
   return (
     <AppProvider> {/* ✅ Wrap the whole app in the provider */}
       <Router>

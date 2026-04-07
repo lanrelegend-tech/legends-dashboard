@@ -36,22 +36,24 @@ function SortableItem({ task, tasks, setTasks, handleChange, handleKeyDown }) {
       {...listeners}
       className="task-row"
     >
-      <span>
-        <input
-          type="checkbox"
-          checked={task.completed}
-          onChange={() => {
-            setTasks(tasks.map(t =>
-              t.id === task.id ? { ...t, completed: !t.completed } : t
-            ));
-          }}
-        />
+      <span style={{color:'--secondary-text'}}>
+       <input
+  type="checkbox"
+  checked={task.completed}
+  onPointerDown={(e) => e.stopPropagation()}
+  onChange={() => {
+    setTasks(tasks.map(t =>
+      t.id === task.id ? { ...t, completed: !t.completed } : t
+    ));
+  }}
+/>
 
         {task.isediting ? (
           <input
             type="text"
             value={task.name}
-            style={{ background: 'none', border: 'none', color: 'black', outline: 'none' }}
+            style={{ background: 'none', border: 'none', color: 'red', outline: 'none'  }}
+            onPointerDown={(e) =>e.stopPropagation()}
             onChange={(e) => handleChange(task.id, e.target.value)}
             onKeyDown={(e) => handleKeyDown(e, task.id)}
             autoFocus
@@ -62,26 +64,29 @@ function SortableItem({ task, tasks, setTasks, handleChange, handleKeyDown }) {
       </span>
 
       <div className="actions">
+<button
+  className="btn edit"
+  onPointerDown={(e) => e.stopPropagation()}
+  onClick={(e) => {
+    e.stopPropagation();
+    setTasks(tasks.map(t =>
+      t.id === task.id ? { ...t, isediting: true } : t
+    ));
+  }}
+>
+  Edit
+</button>
 
-        <button
-          className="btn edit"
-          onClick={() => {
-            setTasks(tasks.map(t =>
-              t.id === task.id ? { ...t, isediting: true } : t
-            ));
-          }}
-        >
-          Edit
-        </button>
-
-        <button
-          className="btn delete"
-          onClick={() => {
-            setTasks(tasks.filter(t => t.id !== task.id));
-          }}
-        >
-          Delete
-        </button>
+<button
+  className="btn delete"
+  onPointerDown={(e) => e.stopPropagation()}
+  onClick={(e) => {
+    e.stopPropagation();
+    setTasks(tasks.filter(t => t.id !== task.id));
+  }}
+>
+  Delete
+</button>
       </div>
     </div>
   );
@@ -174,7 +179,7 @@ function TaskSummary({ limit }) {
         <button onClick={() => setFilter('active')} className={`filter-btn ${filter === 'active' ? 'active' : ''}`}>Active</button>
         <button onClick={() => setFilter('inactive')} className={`filter-btn ${filter === 'inactive' ? 'active' : ''}`}>Inactive</button>
 
-        <div style={{ marginLeft: '3rem' }}>
+        <div >
           <input
             type="text"
             placeholder="New task"

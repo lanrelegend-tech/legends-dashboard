@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "./AppContext"; // <- make sure the path is correct
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 function ProjectSummary({ limit }) {
   const context = useContext(AppContext);
@@ -58,7 +59,7 @@ function ProjectSummary({ limit }) {
                 </select>
               </td>
               <td>
-                <button onClick={() => handleDelete(project.id)}>Delete</button>
+                <button onClick={() => handleDelete(project.id) } style={{background:'none',outline:'none',border:'none',color:'red'}}><RiDeleteBin6Line /></button>
               </td>
             </tr>
           ))}
