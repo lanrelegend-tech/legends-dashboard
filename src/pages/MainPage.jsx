@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import MobileSidebar from "../components/MobileSidebar";
 import Searchbar from "../components/Searchbar";
 import Task from "../components/Task";
 import Projects from "../components/Projects";
@@ -11,6 +11,7 @@ import TaskSumarry from "../components/TaskSumarry";
 import {motion} from "framer-motion" ;
 import MainPageSkeleton from "../components/MainPageSkeleton"; // adjust path if needed
 import { useState, useEffect } from "react";
+import Sidebar from "../components/Sidebar";
 
 function Mainpage() {
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,8 @@ function Mainpage() {
   return (
   
       <div className="app">
-        <Sidebar />
+          <MobileSidebar /> 
+          <Sidebar/>
         <div className="main">
           <Searchbar />
           <motion.div className="overview"
@@ -59,7 +61,16 @@ function Mainpage() {
       }}
     >
             <ProjectSummary limit={3} />
+            <motion.div
+  className="doughnut-chart"
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  style={{ width: "200px", margin: "2rem auto" ,padding:'2rem',marginRight:'1rem'}}
+>
+  
             <Dashboard />
+            </motion.div>
           </motion.div>
 
           <motion.div className="task-summary"

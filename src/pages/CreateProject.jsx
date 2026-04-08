@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppContext } from "../components/AppContext";
+import MobileSidebar from "../components/MobileSidebar";
 
 function CreateProject() {
   const { projects, setProjects } = useContext(AppContext); // Get context
@@ -54,6 +55,7 @@ function CreateProject() {
   return (
     <div>
       <Sidebar />
+      <MobileSidebar/>
       <div>
         <form className="create-project-form" onSubmit={handleSubmit}>
           <h2>Create New Project</h2>
@@ -117,10 +119,13 @@ function CreateProject() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description"
+            
+            >Description:</label>
             <textarea
               value={formData.description}
               onChange={handleChange}
+               style={{fontSize:'16px',padding:'0.4rem'}}
               id="description"
               rows={5}
             />

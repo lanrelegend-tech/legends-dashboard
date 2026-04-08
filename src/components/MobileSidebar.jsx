@@ -1,0 +1,121 @@
+import React, { useState } from "react";
+import { RxDashboard } from "react-icons/rx";
+import { GrProjects } from "react-icons/gr";
+import { FaTasks, FaTimes } from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
+import { CiSettings, CiLogout } from "react-icons/ci";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+function MobileSidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    navigate("/LoginPage", { replace: true });
+  };
+
+  const polygonVarient = {
+    hidden: { opacity: 0, pathLength: 0 },
+    visible: {
+      opacity: 1,
+      pathLength: 1,
+      transition: { duration: 2, ease: "easeInOut" },
+    },
+  };
+
+  return (
+    <>
+      {/* ✅ Hamburger */}
+      <div className="hamburger-btn" onClick={toggleSidebar}>
+        <div className="line" style={{ backgroundColor: "green" }}></div>
+        <div className="line" style={{ backgroundColor: "green" }}></div>
+        <div className="line" style={{ backgroundColor: "green" }}></div>
+      </div>
+
+      {/* ✅ Sidebar */}
+      <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
+        
+        {/* Close button */}
+        <div className="close-btn" onClick={toggleSidebar}>
+          <FaTimes size={20} />
+        </div>
+
+        {/* Logo */}
+        <div className="sidebar-logo" style={{ marginBottom: "50px" ,marginTop:'-70px'}}>
+          <svg width="150" height="70" viewBox="0 0 300 100">
+            <motion.polygon
+              points="10,40 30,10 50,40 40,40 30,25 20,40"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              variants={polygonVarient}
+              initial="hidden"
+              animate="visible"
+            />
+
+            <motion.polygon
+              points="50,40 70,10 90,40 80,40 70,25 60,40"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              variants={polygonVarient}
+              initial="hidden"
+              animate="visible"
+            />
+
+            <text x="100" y="32" fontSize="24" fill="white">
+              Legendtech
+            </text>
+          </svg>
+        </div>
+
+        {/* Menu */}
+        <div className="mobile-sidebar-menu">
+           <input 
+        type='text'
+        className="mobile-search"
+        color='--search-text'
+        placeholder='search...'
+        />
+          <p onClick={() => navigate("/CreateProject")}>
+            <IoMdAddCircleOutline /> Create project
+          </p>
+
+          <p onClick={() => navigate("/")}>
+            <RxDashboard /> Dashboard
+          </p>
+
+          <p onClick={() => navigate("/ProjectPage")}>
+            <GrProjects /> Projects
+          </p>
+
+          <p onClick={() => navigate("/TaskPage")}>
+            <FaTasks /> Tasks
+          </p>
+
+          <p>
+            <SlCalender /> Calendar
+          </p>
+
+          <p onClick={() => navigate("/Profile")}>
+            <CiSettings /> Settings
+          </p>
+
+          <p onClick={handleLogout}>
+            <CiLogout /> Logout
+          </p>
+        </div>
+      </div>
+
+      {/* ✅ Overlay */}
+      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+    </>
+  );
+}
+
+export default MobileSidebar;

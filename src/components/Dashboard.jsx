@@ -1,53 +1,42 @@
-import { useContext } from "react";
+// ProjectDoughnut.jsx
+import React, { useContext } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { AppContext } from "./AppContext";
 
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 function Dashboard() {
-  const { projects } = useContext(AppContext);
+  const context = useContext(AppContext);
+  if (!context) return <div>Error: AppContext not found!</div>;
 
-  const totalProjects = projects.length;
-  const completed = projects.filter((p) => p.status === "completed");
-  const inprogress = projects.filter((p) => p.status === "inprogress");
-  const pending = projects.filter((p) => p.status === "pending");
+  const { projects } = context;
 
-  const completedPercent = totalProjects ? (completed.length / totalProjects) * 100 : 0;
-  const inprogressPercent = totalProjects ? (inprogress.length / totalProjects) * 100 : 0;
-  const pendingPercent = totalProjects ? (pending.length / totalProjects) * 100 : 0;
+  // Count projects by status
+  const completed = projects.filter(p => p.status === "completed").length;
+  const inProgress = projects.filter(p => p.status === "inprogress").length;
+  const pending = projects.filter(p => p.status === "pending").length;
 
-  const completedDegree = completedPercent * 1.8;
-  const inprogressDegree = inprogressPercent * 1.8;
+  const data = {
+    labels: ["Completed", "In Progress", "Pending"],
+    datasets: [
+      {
+        data: [completed, inProgress, pending],
+        backgroundColor: ["#10B981", "#FBBF24", "#EF4444"], // green, yellow, red
+        borderColor: ["#fff", "#fff", "#fff"],
+        borderWidth: 2
+      }
+    ]
+  };
 
-  return (
-    <div className="overview-card">
-      <h3>Project Progress</h3>
-      <div className="progress-container">
-        <div
-          className="semi-circle"
-          style={{
-            background: `conic-gradient(
-              #3498db 0deg ${completedDegree}deg,
-              #f39c12 ${completedDegree}deg ${completedDegree + inprogressDegree}deg,
-              #ccc ${completedDegree + inprogressDegree}deg 180deg
-            )`,
-            transition: "background 0.5s ease",
-          }}
-        ></div>
-        <div className="text">
-          <h2>{Math.round(completedPercent)}%</h2>
-        </div>
-      </div>
-      <div className="legends">
-        <span>
-          <i className="completed"></i>Completed ({completed.length})
-        </span>
-        <span>
-          <i className="inprogress"></i>In Progress ({inprogress.length})
-        </span>
-        <span>
-          <i className="pending"></i>Pending ({pending.length})
-        </span>
-      </div>
-    </div>
-  );
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: { position: "bottom" }
+    }
+  };
+
+  return <Doughnut data={data} options={options} />;
 }
 
 export default Dashboard;

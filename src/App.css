@@ -1,11 +1,4 @@
-/* global colour*/
-:root {
-  --primary-color: #1A2517;
-  --secondary-color: #ACC8A2;
-  --accent-color: #4caf50;
-  --background-color: #F5F5F5;
-  --text-color: #333;
-}
+
 
 /* Light Theme */
 [data-theme="light"] {
@@ -252,18 +245,13 @@ th,td {
 }
 
 /* dashboard*/
-.overview-card{
+.doughnut-chart{
 background-color:  var(--summary-bg);
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   
   border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-  width: 30%;
-  margin-top: 1rem;
 
-  margin-right: 2rem;
   
 }
 h3{
@@ -540,6 +528,64 @@ h3{
 }
 
 
+
+/*mobile-sidedbar*/
+/* Hamburger button */
+.hamburger-btn {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin: 1rem;
+  z-index: 1001;
+}
+
+.hamburger-btn .line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Mobile sidebar */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background-color: var(--summary-bg);
+  padding: 2rem 1rem;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.mobile-sidebar.open {
+  left: 0;
+}
+
+/* Close button */
+.close-btn {
+  text-align: right;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+
+
+
+
 /*login page*/
 .login{
   display: flex;
@@ -583,6 +629,7 @@ h3{
   border: none;
   margin-top: 1rem;
   color: white;
+  outline: none;
 
 }
 
@@ -623,6 +670,28 @@ h3{
   border-color: #666;
   width: 60%;
   margin-bottom: 1rem;
+}
+/* spinner*/
+.spinner-position {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  border-radius: 20px; /* match your login card */
+  z-index: 1000;
+}
+.spinner{
+  margin-right: 60rem;
+
+}
+.spinner-icon{
+  width: 50px;
+  height: 20px;
 }
 /* profile*/
 /* Page *
@@ -738,11 +807,86 @@ h3{
 /* responsive */
 
 @media (max-width:767px) {
-  .sidebar{
-    display: none;
-  }
+    .sidebar { display: none; } /* hide desktop sidebar on mobile */
+  
+.hamburger-btn {
+  position: fixed;
+  top: 20px;
+  left: 5px;
+  z-index: 1999; /* must be above everything */
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}  
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100vh;
+  background-color: var(--pages-bg);
+  padding: 2rem 1rem;
+  transition: 0.3s ease;
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  left: 0;
+}
+.mobile-search{
+  width: 80%;
+  padding: 0.2rem;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+.mobile-sidebar-menu{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: -2rem;
+  margin-bottom: 7rem;
+    
+
+}
+.mobile-sidebar p {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: white;
+}
+.mobile-sidebar p:hover{
+  background-color: #ACC8A2;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 15px;
+}
+.mobile-sidebar h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+
+  
+}
+.mobile-sidebar h3{
+  color: #ACC8A2;
+  margin-top: 1rem;
+
+  
+  
+  margin-left: -1rem;
+}
+.h{
+  color: black !important;
+}
+  
   .main{
     margin-left: 3rem;
+    margin-top: 5rem;
   
   
     
@@ -780,8 +924,9 @@ h3{
   .table-summary{
 
     padding: 1rem;
-    margin-left: -2rem;
+    margin-left: -1rem;
     margin-right: 1rem;
+    width: 89vw;
 
   
   }
@@ -837,7 +982,7 @@ h3{
    border: 1px solid #000000;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.5rem;
+  font-size: 16px;
   justify-content: center;
   color: black;
   padding: 0.5rem 0.5rem;
@@ -862,13 +1007,14 @@ h3{
   .profile-card{
     margin-bottom: 2rem;
     width: 90vw !important;
-    margin-left: 1rem !important;
-    margin-top: 2rem;
+    margin-left: 6vw !important;
+    margin-top: 5rem;
   }
   .create-project-form{
     width: 80vw !important;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 5rem !important;
+    margin-bottom: 19rem;
     margin-left: 2rem !important;
   }
   .field-row {
@@ -888,15 +1034,53 @@ h3{
     
   }
   .login{
-    width: 80%;
-    margin: auto;
-    margin-top: 2rem;
+    width: 300px;
+    margin-top: 70px !important;
     padding: 0 1rem;
     margin-left: 2rem;
+    gap: 1rem;
   }
+  
+h1{
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  margin-top: -5rem;
+  font-size: 1.5rem;
+}
+h3{
+  color: #8cc88f;
+}
+
+
+
+
+
+  
+.spinner-position {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  border-radius: 20px; /* match your login card */
+  z-index: 1000;
+}
+.spinner{
+  margin-left: 25rem;
+}
+.spinner-icon{
+  width: 20px;
+}
+
   .google-btn{
     width: 70%;
-    margin-left: 2.5rem;
+    margin-left: -0.5rem !important;
+    margin-top: -2rem;
+    margin-bottom: -0.5rem;
   
   }
 
@@ -918,6 +1102,7 @@ h3{
   }
   .sidebar{
     width: 200px;
+    
   }
   .table-summary{
     margin-left: -1rem;

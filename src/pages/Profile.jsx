@@ -5,6 +5,7 @@ import { CiEdit } from "react-icons/ci";
 import Sidebar from '../components/Sidebar';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
+import MobileSidebar from "../components/MobileSidebar";
 
 function Profile() {
   const [image, setImage] = useState(() => {
@@ -83,6 +84,7 @@ const handleThemeToggle = () => {
 };
   return (
     <div><Sidebar/>
+    <MobileSidebar/>
     <div className="page">
 
       <div className="profile-card">

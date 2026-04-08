@@ -4,12 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "../components/Spinner"; // your polygon spinner
+import { motion } from "framer-motion";
 
 function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // spinner off by default
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -25,15 +26,19 @@ function LoginPage() {
       return;
     }
 
-    // Show spinner only after clicking LOGIN
     setLoading(true);
 
     setTimeout(() => {
       localStorage.setItem("currentUser", JSON.stringify(user));
       localStorage.setItem("loginTime", Date.now());
       setLoading(false);
-      navigate("/"); // redirect to dashboard
-    }, 6000); // simulate login delay
+      navigate("/");
+    }, 6000);
+  };
+
+  const polygonVarient = {
+    hidden: { opacity: 0, pathLength: 0 },
+    visible: { opacity: 1, pathLength: 1, transition: { duration: 2, ease: 'easeInOut' } },
   };
 
   return (
@@ -45,10 +50,51 @@ function LoginPage() {
         flexDirection: "column",
         alignItems: "center",
         marginTop: 50,
-        minHeight: "80vh",
-        padding: 20
+      
+      
       }}
     >
+      {/* Logo 4rem from left */}
+      <div
+        className="login-logo"
+        style={{
+          alignSelf: "flex-start",
+          marginLeft: "4rem",
+          marginBottom: "2rem",
+        }}
+      >
+        <svg  width="150" height="70" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+          <motion.polygon
+            points="10,40 30,10 50,40 40,40 30,25 20,40"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            variants={polygonVarient}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.polygon
+            points="50,40 70,10 90,40 80,40 70,25 60,40"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            variants={polygonVarient}
+            initial="hidden"
+            animate="visible"
+          />
+          <text
+            x="100"
+            y="32"
+            fontFamily="Arial, sans-serif"
+            fontSize="2rem"
+            fill="none"
+            stroke="white"
+          >
+            Legendtech
+          </text>
+        </svg>
+      </div>
+
       <h1>Welcome back</h1>
       <h3>Sign into your account</h3>
 
@@ -70,6 +116,7 @@ function LoginPage() {
       </button>
 
       <div className="divider"><span>OR</span></div>
+
       <button className="google-btn">
         <FcGoogle /> Continue with google &rarr;
       </button>
@@ -82,17 +129,8 @@ function LoginPage() {
 
       {/* Spinner Overlay */}
       {loading && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0, left: 0, right: 1, bottom: 0,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "rgba(0, 0, 0, 0.44)",
-            zIndex: 10
-          }}
-        > <div style={{ transform: "translateX(10rem)" }}>
+        <div className="spinner-position">
+          <div className="spinner">
           <Spinner />
           </div>
         </div>
