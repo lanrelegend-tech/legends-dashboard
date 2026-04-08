@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainPage from "./pages/MainPage";
+import  { lazy, Suspense } from "react";
 import LoginPage from "./pages/LoginPage";
 import TaskPage from "./pages/TaskPage";
 import Profile from "./pages/Profile";
@@ -10,12 +10,16 @@ import CreateProject from "./pages/CreateProject";
 import RedirectIfAuth from "./components/RedirectIfAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AppProvider } from "./components/AppContext"; // ✅ import your context provider
+import MainPageSkeleton from "./components/MainPageSkeleton"; 
 import "./App.css";
 
 
 function App() {
    const savedTheme = localStorage.getItem("selectedTheme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
+  
+
+const MainPage = lazy(() => import("./pages/MainPage"));
 
   
   return (
@@ -46,7 +50,9 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
+                    <Suspense fallback={<MainPageSkeleton />}>
                 <MainPage />
+                   </Suspense>
               </ProtectedRoute>
             }
           />

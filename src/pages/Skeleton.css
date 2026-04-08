@@ -1,1 +1,169 @@
+/* Layout */
+/* Light Theme */
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: white;
+  --search-text: green;
+  --card-bg: linear-gradient(to bottom ,rgb(2, 21, 2),rgb(1, 71, 1));
+  --button-bg: #10B981;
+  --button-text: #ffffff;
+  --summary-bg:  #d2cdcd;
+  --secondary-text: black;
+  --taskinput-bg: white;
+  --pages-bg:   #082300;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-color: rgb(31, 31, 51);
+  --text-color: white;
+  --search-text: white;
+  --card-bg: rgb(34, 34, 68);
+  --button-bg: rgb(47, 47, 94);
+  --button-text: #111827;
+  --summary-bg: rgb(45, 45, 83);
+  --secondary-text: white;
+  --taskinput-bg: rgb(116, 115, 115);
+  --pages-bg: rgb(34, 34, 68);
+}
+
+.app {
+
+
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar-skeleton {
+  width: 240px;
+  padding: 25px 20px;
+  background-color: var(--summary-bg);
+  border-right: 1px solid #fa0000;
+}
+
+/* Logo */
+.skeleton-logo {
+  height: 40px;
+  width: 70%;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  background-color: rgb(144, 144, 144) !important;
+}
+
+/* Nav items */
+.skeleton-nav-item {
+  height: 18px;
+  width: 80%;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  background-color: rgb(123, 123, 123) !important;
+}
+
+/* ================= MAIN ================= */
+.main {
+  overflow-y: auto;
+}
+
 /* Searchbar */
+.skeleton-searchbar {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 25px;
+  margin-top: 3rem;
+  border-radius: 10px;
+}
+
+/* ================= OVERVIEW ================= */
+
+
+.skeleton-overview-card-skeleton {
+  flex: 1;
+  margin-top: 4rem;
+  height: 110px;
+  width: 30vw !important;
+  border-radius: 12px;
+}
+
+/* ================= PROJECT + DASHBOARD ================= */
+
+
+
+.skeleton-project-summary {
+  flex: 1;
+  margin-top: 3rem;
+  height: 150px;
+  border-radius: 12px;
+  
+}
+
+.skeleton-dashboard-chart {
+  flex: 1;
+  margin-top: 3rem;
+  height: 150px;
+  border-radius: 12px;
+  margin-right: 3rem;
+}
+
+/* ================= TASK SUMMARY ================= */
+
+.skeleton-task-summary-box {
+  width: 80%;
+  height: 100px;
+  margin-top: 3rem;
+  border-radius: 12px;
+}
+
+/* ================= SKELETON BASE ================= */
+.skeleton-logo,
+.skeleton-nav-item,
+.skeleton-searchbar,
+.skeleton-overview-card-skeleton,
+.skeleton-project-summary,
+.skeleton-dashboard-chart,
+.skeleton-task-summary-box {
+  background: var(--summary-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= SHIMMER EFFECT ================= */
+.skeleton-logo::after,
+.skeleton-nav-item::after,
+.skeleton-searchbar::after,
+.skeleton-overview-card-skeleton::after,
+.skeleton-project-summary::after,
+.skeleton-dashboard-chart::after,
+.skeleton-task-summary-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -200px;
+  height: 100%;
+  width: 200px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(400px);
+  }
+}
+@media (max-width:767px) {
+  .skeleton-overview-card-skeleton {
+  display: none;
+  
+  }
+  .skeleton-task-summary-box-1 {
+  width: 80%;
+  height: 100px;
+  margin-top: 3rem;
+  border-radius: 12px;
+}
+
+
+}
