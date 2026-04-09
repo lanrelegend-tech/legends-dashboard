@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppContext } from "../components/AppContext";
 import MobileSidebar from "../components/MobileSidebar";
+import { motion } from "framer-motion";
 
 function CreateProject() {
   const { projects, setProjects } = useContext(AppContext); // Get context
@@ -131,9 +132,13 @@ function CreateProject() {
             />
           </div>
 
-          <button type="submit" className="create-btn">
+          <motion.button type="submit" className="create-btn"
+          whileHover={{
+        scale:1.1,
+        boxShadow:"0px 0px 8px rgb(255,255,255)",}}>
+          
             Create Project
-          </button>
+          </motion.button>
         </form>
       </div>
 

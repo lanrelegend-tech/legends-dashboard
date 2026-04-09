@@ -106,9 +106,13 @@ function LoginPage() {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button type="button" className="login-btn" onClick={handleLogin}>
+      <motion.button type="button" className="login-btn" onClick={handleLogin}
+      whileHover={{
+        scale:1.1,
+        boxShadow:"0px 0px 8px rgb(255,255,255)",
+      }}>
         LOGIN
-      </button>
+      </motion.button>
 
       <div className="divider"><span>OR</span></div>
 

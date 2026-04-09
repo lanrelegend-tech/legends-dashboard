@@ -107,9 +107,12 @@ function SignupPage() {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button type="submit" className="login-btn" onClick={handleSignup}>
+      <motion.button type="submit" className="login-btn" onClick={handleSignup}
+        whileHover={{
+        scale:1.1,
+        boxShadow:"0px 0px 8px rgb(255,255,255)",}}>
         Sign up
-      </button>
+      </motion.button>
 
       <div className="divider"><span>OR</span></div>
 

@@ -6,6 +6,7 @@ import Sidebar from '../components/Sidebar';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 import MobileSidebar from "../components/MobileSidebar";
+import { motion } from "framer-motion";
 
 function Profile() {
   const [image, setImage] = useState(() => {
@@ -88,7 +89,9 @@ const handleThemeToggle = () => {
     <div className="page">
 
       <div className="profile-card">
-         <button className='toogle' onClick={handleThemeToggle}>Toggle Theme</button>
+         <motion.button className='toogle' onClick={handleThemeToggle} style={{outline:'none',border:'none',color:'white'}}   whileHover={{
+        scale:1.1,
+        boxShadow:"0px 0px 8px rgb(255,255,255)",}}>Toggle Theme</motion.button>
         <h2>Profile</h2>
         
 
@@ -99,7 +102,8 @@ const handleThemeToggle = () => {
             alt="Profile"
             className="profile-pic"
           />
-          <button className="edit-pic-btn" onClick={handleImageClick}><FaUserEdit/></button>
+          <button className="edit-pic-btn" onClick={handleImageClick}
+           ><FaUserEdit/></button>
 
 
                <input
