@@ -49,7 +49,7 @@ const polygonVarient ={
   animate="visible"/>
 
 
-  <text x="100" y="32" font-family="Arial, sans-serif" font-size="2rem" fill="none" stroke="white" >
+  <text x="100" y="32" fontFamily="Arial, sans-serif"  fill="none" stroke="white" >
     Legendtech
   </text>
 </svg>

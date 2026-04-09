@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../components/AppContext';
 import { TiPlus } from "react-icons/ti";
-import { DndContext, closestCenter } from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy, useSortable, arrayMove } from "@dnd-kit/sortable";
+import { DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, closestCenter, useSensor } from "@dnd-kit/core";
+import { SortableContext, verticalListSortingStrategy, useSortable, arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import {  useSensors } from "@dnd-kit/core";
 
 function SortableItem({ task, tasks, setTasks, handleChange, handleKeyDown }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: task.id });
@@ -97,6 +98,12 @@ function TaskSummary({ limit }) {
     setTasks(arrayMove(tasks, oldIndex, newIndex));
   };
 
+  const sensors =useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor, {coordinateGetter:sortableKeyboardCoordinates,})
+  );
+  
   return (
     <div className="task-card">
       <h3>Task Summary</h3>
@@ -112,7 +119,7 @@ function TaskSummary({ limit }) {
         </div>
       </div>
 
-      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={tasks.map(t => t.id)} strategy={verticalListSortingStrategy}>
           {(limit ? filteredTasks.slice(0, limit) : filteredTasks).map(task => (
             <SortableItem key={task.id} task={task} tasks={tasks} setTasks={setTasks} handleChange={handleChange} handleKeyDown={handleKeyDown} />
