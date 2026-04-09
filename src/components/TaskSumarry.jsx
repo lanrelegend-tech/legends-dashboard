@@ -11,8 +11,8 @@ function SortableItem({ task, tasks, setTasks, handleChange, handleKeyDown }) {
   const style = { transform: CSS.Transform.toString(transform), transition };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="task-row">
-      <span>
+   <div ref={setNodeRef} style={style} {...attributes} className="task-row">
+      <span  {...listeners} className="drag-handle">
         <input
           type="checkbox"
           checked={task.completed}
@@ -98,11 +98,22 @@ function TaskSummary({ limit }) {
     setTasks(arrayMove(tasks, oldIndex, newIndex));
   };
 
-  const sensors =useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor, {coordinateGetter:sortableKeyboardCoordinates,})
-  );
+  const sensors = useSensors(
+  useSensor(PointerSensor, {
+    activationConstraint: {
+      distance: 8, 
+    },
+  }),
+  useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 200,   
+      tolerance: 5,
+    },
+  }),
+  useSensor(KeyboardSensor, {
+    coordinateGetter: sortableKeyboardCoordinates,
+  })
+);
   
   return (
     <div className="task-card">
