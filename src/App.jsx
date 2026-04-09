@@ -11,6 +11,7 @@ import RedirectIfAuth from "./components/RedirectIfAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AppProvider } from "./components/AppContext"; // ✅ import your context provider
 import MainPageSkeleton from "./components/MainPageSkeleton"; 
+import NotFoundPage from "./components/NotFoundPage";
 import "./App.css";
 
 
@@ -45,6 +46,7 @@ const MainPage = lazy(() => import("./pages/MainPage"));
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TaskPage" element={<TaskPage />} />
           <Route path="/ProjectPage" element={<ProjectPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           <Route path="/CreateProject" element={<CreateProject />} />
           <Route
             path="/"

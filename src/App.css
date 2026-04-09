@@ -612,7 +612,7 @@ h3{
   width: 40%;
   justify-content: center;
   margin-top: 3rem;
-  margin: auto;
+  margin: auto !important;
   margin-bottom: 3rem;
   border-radius: 20px;
   padding-bottom: 2rem;
@@ -639,7 +639,7 @@ h3{
 }
 .user-input{
   background-color: #000000;
-  width: 60%;
+  width: 80%;
   font-size: 1rem;
   padding: 0.3rem;
   border-radius: 10px;
@@ -654,6 +654,8 @@ h3{
   background-color: #36512b;
   color: black;
   padding: 0.4rem;
+  border: none;
+  outline: none;
   border-radius: 10px;
 }
 .divider {
@@ -678,7 +680,7 @@ h3{
 .google-btn{
   background-color: transparent;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
   margin-left: 5rem;
   justify-content: center;
@@ -709,6 +711,10 @@ h3{
 .spinner-icon{
   width: 50px;
   height: 20px;
+}
+.login-logo{
+  
+  margin-bottom: 2rem;
 }
 /* profile*/
 /* Page *
