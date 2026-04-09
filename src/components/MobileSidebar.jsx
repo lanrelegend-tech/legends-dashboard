@@ -6,12 +6,15 @@ import { SlCalender } from "react-icons/sl";
 import { CiSettings, CiLogout } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from 'framer-motion';
+import LogoutModal from "../components/LogoutModal";
+
 
 function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [text, setText] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -125,9 +128,14 @@ function MobileSidebar() {
             <CiSettings /> Settings
           </p>
 
-          <p onClick={handleLogout}>
-            <CiLogout /> Logout
-          </p>
+          <p onClick={() => setShowModal(true)}>
+  <CiLogout /> Logout
+</p>
+  <LogoutModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleLogout}
+      />
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState }  from "react";
 import { RxDashboard } from "react-icons/rx";
 import { GrProjects } from "react-icons/gr";
 import { FaTasks } from "react-icons/fa";
@@ -12,9 +12,11 @@ import { useNavigate } from "react-router-dom";
 import { easeInOut, motion } from 'framer-motion';
 import { s } from "framer-motion/client";
 import { AppContext } from "./AppContext";
+import LogoutModal from "../components/LogoutModal";
 
 
  function Sidebar() {
+   const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const handleLogout = () => {
     localStorage.removeItem("currentUser"); // log out
@@ -62,7 +64,14 @@ const polygonVarient ={
             <p onClick={() => navigate ("/TaskPage")}><FaTasks />Tasks</p>
             <p><SlCalender />Calender</p>
             <p onClick={() => navigate("/Profile")}><CiSettings />settings</p>
-            <p onClick={handleLogout}><CiLogout />Logout</p>
+          <p onClick={() => setShowModal(true)}>
+  <CiLogout /> Logout
+</p>
+  <LogoutModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleLogout}
+      />
         </div>
     </div>
     
