@@ -933,6 +933,7 @@ h3{
   }
   .text{
     margin-left: -1.5rem;
+    font-size: 16px;
   }
   .filters {
   display: flex;
@@ -995,6 +996,7 @@ h3{
   .task-row span {
     white-space: normal;
     word-break: break-word;
+    font-size: 16px;
     width: 100%;
   }
 
