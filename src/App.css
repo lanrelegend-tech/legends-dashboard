@@ -200,6 +200,7 @@ background:var(--card-bg);
   border-radius: 20px;
   border: none;
   padding-top: 1rem;
+  overflow-x: auto;
   width: 70%;
   margin-top: 1rem;
   flex: 1 500px;
@@ -227,7 +228,14 @@ table{
 th,td {
   padding: 3px 5px;
   font-size: 0.8rem;
-  
+}
+/* Only the table body cells for Project Name and Manager */
+.table-summary tbody td.project-name,
+.table-summary tbody td.project-manager {
+  max-width: 90px;       /* adjust as needed */
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: ellipsis;
 }
 .selection{
   color: black;
@@ -410,6 +418,7 @@ h3{
   margin-bottom: 1rem;
   background: var(--summary-bg);
   padding: 20px;
+
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -438,7 +447,15 @@ h3{
 .task-row span {
   font-size: 0.7rem;
   color: var(--secondary-text);
+  max-width: 100%;
+  display: flex;
+  align-items: first baseline;
   
+}
+
+.task-row span input[type="checkbox"] {
+  margin-right: 0.5rem;  /* space between checkbox and text */
+  flex-shrink: 0;        
 }
 
 .actions {
@@ -927,11 +944,20 @@ h3{
     margin-left: -1rem;
     margin-right: 1rem;
     width: 89vw;
+    gap: 0.5rem;
+    padding-right: 2rem !important;
 
   
   }
+  /* Only the table body cells for Project Name and Manager */
+.table-summary tbody td.project-name,
+.table-summary tbody td.project-manager {
+  max-width: 4rem;       /* adjust as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  
 
   
   
@@ -1003,6 +1029,12 @@ h3{
   
 
 }
+  .task-row span {
+    white-space: normal;
+    word-break: break-word;
+    width: 100%;
+  }
+
   
   .profile-card{
     margin-bottom: 2rem;

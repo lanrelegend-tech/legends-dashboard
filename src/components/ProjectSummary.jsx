@@ -42,11 +42,11 @@ function ProjectSummary({ limit }) {
         <tbody>
           {displayedProjects.map((project) => (
             <tr key={project.id}>
-              <td>{project.projectName}</td>
-              <td>{project.projectManager}</td>
+              <td className="project-name">{project.projectName}</td>
+              <td className="project-manager">{project.projectManager}</td>
               <td>{project.dueDate}</td>
               <td>{project.priority}</td>
-              <td>
+              <td className="project-status">
                 <select
                   value={project.status}
                   onChange={(e) =>
