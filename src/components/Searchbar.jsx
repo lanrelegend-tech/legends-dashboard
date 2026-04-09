@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 function Searchbar() {
   const [userName, setUserName] = useState("");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -17,6 +18,21 @@ function Searchbar() {
 
   const fullText = "Dashboard";
   const [text, setText] = useState("");
+
+
+
+  // Search handler
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setQuery(value);
+
+    // ✅ Filter sidebar menu items
+    const menuItems = document.querySelectorAll(".sidebar-menu p");
+    menuItems.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(value) ? "flex" : "none";
+    });
+  };
 
   useEffect(() => {
     let index = 0;
@@ -35,9 +51,11 @@ function Searchbar() {
       style={{ fontSize: "1.3rem", fontWeight: "bold" ,overflow: 'hidden', whiteSpace: 'nowrap' }}
   >Dashboard</motion.h1>
         <input className='searchbtn'
-        type='text'
-        color='--search-text'
-        placeholder='search...'
+        type="text"
+  placeholder="Search......"
+  value={query}
+  onChange ={handleSearch}
+       
         />
         <div className='search-icons'>
           <CiUser style={{color:'var(--search-text)'}}/>

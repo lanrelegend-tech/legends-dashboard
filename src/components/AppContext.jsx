@@ -8,6 +8,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [search, setSearch] = useState(""); 
 
   // Load projects from localStorage on mount
   useEffect(() => {
@@ -24,7 +25,7 @@ export const AppProvider = ({ children }) => {
   }, [projects, tasks]);
 
   return (
-    <AppContext.Provider value={{ projects, setProjects, tasks, setTasks }}>
+    <AppContext.Provider value={{ projects, setProjects, tasks, setTasks ,search,setSearch}}>
       {children}
     </AppContext.Provider>
   );

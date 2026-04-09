@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 
 function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [text, setText] = useState("");
   const navigate = useNavigate();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -19,6 +21,18 @@ function MobileSidebar() {
     navigate("/LoginPage", { replace: true });
   };
 
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setQuery(value);
+
+    // ✅ Filter sidebar menu items
+    const menuItems = document.querySelectorAll(".mobile-sidebar-menu p");
+    menuItems.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(value) ? "flex" : "none";
+    });
+  };
+
   const polygonVarient = {
     hidden: { opacity: 0, pathLength: 0 },
     visible: {
@@ -26,6 +40,9 @@ function MobileSidebar() {
       pathLength: 1,
       transition: { duration: 2, ease: "easeInOut" },
     },
+
+
+    
   };
 
   return (
@@ -81,6 +98,8 @@ function MobileSidebar() {
         className="mobile-search"
         color='--search-text'
         placeholder='search...'
+        value={query}
+        onChange={handleSearch}
         />
           <p onClick={() => navigate("/CreateProject")}>
             <IoMdAddCircleOutline /> Create project

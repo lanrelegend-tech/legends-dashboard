@@ -51,11 +51,7 @@ function SignupPage() {
       {/* Logo 4rem from left */}
       <div
         className="login-logo"
-        style={{
-          alignSelf: "flex-start",
-          marginLeft: "4rem",
-          marginBottom: "2rem",
-        }}
+       
       >
         <svg width="150" height="70" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
           <motion.polygon

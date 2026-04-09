@@ -11,6 +11,8 @@ import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { easeInOut, motion } from 'framer-motion';
 import { s } from "framer-motion/client";
+import { AppContext } from "./AppContext";
+
 
  function Sidebar() {
     const navigate = useNavigate();
