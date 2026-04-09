@@ -468,7 +468,7 @@ h3{
   gap: 5px;
   cursor: pointer;
   margin: 1rem;
-  z-index: 1001;
+  z-index: 1002;
 }
 
 .hamburger-btn .line {
