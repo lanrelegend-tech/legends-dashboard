@@ -5,15 +5,32 @@ import MobileSidebar from "../components/MobileSidebar";
 
 
 function ProjectPage() {
+  const containerVariants ={
+    hidden:{
+      opacity:'0',
+    },
+    visible:{
+      opacity:'1',
+      transition: {delay:1.5,duration:1}
+    },
+    exit :{
+      x:'100vw',
+      transition:{ease:'easeInOut'}
+    }
+  }
   return (
     <div> 
         <Sidebar/>
         <MobileSidebar/>
-        <div className='main'>
+        <motion.div className='main'
+        variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit">>
             <div className='project-page'>
             <ProjectSummary/>
             </div>
-        </div>
+        </motion.div>
     </div>
   )
 }

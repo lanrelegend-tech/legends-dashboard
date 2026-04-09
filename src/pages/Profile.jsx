@@ -83,10 +83,28 @@ const handleThemeToggle = () => {
 
   toast.success(`Switched to ${newTheme} mode`);
 };
+
+const containerVariants ={
+    hidden:{
+      opacity:'0',
+    },
+    visible:{
+      opacity:'1',
+      transition: {delay:1.5,duration:1}
+    },
+    exit :{
+      x:'100vw',
+      transition:{ease:'easeInOut'}
+    }
+  }
   return (
     <div><Sidebar/>
     <MobileSidebar/>
-    <div className="page">
+    <motion.div className="page"
+    variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit">
 
       <div className="profile-card">
          <motion.button className='toogle' onClick={handleThemeToggle} style={{outline:'none',border:'none',color:'white'}}   whileHover={{
@@ -263,7 +281,7 @@ const handleThemeToggle = () => {
 
       </div>
 
-    </div>
+    </motion.div>
     <ToastContainer position="top-right" autoClose={1000} 
               hideProgressBar={false}
             newestOnTop={false}

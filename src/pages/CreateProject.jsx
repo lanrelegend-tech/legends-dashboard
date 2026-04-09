@@ -52,12 +52,29 @@ function CreateProject() {
       status: "pending",
     });
   };
+   const containerVariants ={
+    hidden:{
+      opacity:'0',
+    },
+    visible:{
+      opacity:'1',
+      transition: {delay:1.5,duration:1}
+    },
+    exit :{
+      x:'100vw',
+      transition:{ease:'easeInOut'}
+    }
+  }
 
   return (
     <div>
       <Sidebar />
       <MobileSidebar/>
-      <div>
+      <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit">
         <form className="create-project-form" onSubmit={handleSubmit}>
           <h2>Create New Project</h2>
           <div className="form-group">
@@ -140,7 +157,7 @@ function CreateProject() {
             Create Project
           </motion.button>
         </form>
-      </div>
+      </motion.div>
 
       <ToastContainer position="top-right" autoClose={1000} 
                 hideProgressBar={false}

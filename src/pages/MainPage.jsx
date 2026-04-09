@@ -27,13 +27,32 @@ function Mainpage() {
     return <MainPageSkeleton />;
   }
 
+  const containerVariants ={
+    hidden:{
+      opacity:'0',
+    },
+    visible:{
+      opacity:'1',
+      transition: {delay:1.5,duration:1.5}
+    },
+    exit :{
+      x:'100vw',
+      transition:{ease:'easeInOut'}
+    }
+  }
+
   
   return (
   
       <div className="app">
+     
           <MobileSidebar /> 
           <Sidebar/>
-        <div className="main">
+        <motion.div className="main"
+        variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit">
           <Searchbar />
           <motion.div className="overview"
             initial={{ x: 200, opacity: 0 }}     // start off to the right
@@ -84,7 +103,7 @@ function Mainpage() {
     >
             <TaskSumarry limit={2} />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
   );
