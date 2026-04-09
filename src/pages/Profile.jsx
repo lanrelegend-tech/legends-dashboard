@@ -260,14 +260,15 @@ const handleThemeToggle = () => {
       </div>
 
     </div>
-    <ToastContainer 
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
+    <ToastContainer position="top-right" autoClose={1000} 
+              hideProgressBar={false}
+            newestOnTop={false}
             closeOnClick
-            pauseOnHover
+            rtl={false}
+            pauseOnFocusLoss
             draggable
-          />
+            pauseOnHover
+            style={{ maxWidth: "350px" }}/>
     </div>
   );
 }

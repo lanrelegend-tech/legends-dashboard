@@ -120,15 +120,21 @@ function LoginPage() {
         Don't have an account? <Link to='/SignupPage'> Sign up</Link>
       </p>
 
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={1000} 
+          hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ maxWidth: "350px" }}/>
 
       {/* Spinner Overlay */}
       {loading && (
-        <div className="spinner-position">
-          <div className="spinner">
+        
           <Spinner />
-          </div>
-        </div>
+          
       )}
     </div>
   );

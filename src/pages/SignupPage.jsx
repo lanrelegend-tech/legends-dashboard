@@ -121,7 +121,15 @@ function SignupPage() {
         Already have an account? <Link to='/LoginPage'> Login</Link>
       </p>
 
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={1000} 
+                hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              style={{ maxWidth: "350px" }}/>
     </div>
   );
 }
