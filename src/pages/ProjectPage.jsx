@@ -2,6 +2,8 @@ import React from 'react'
 import ProjectSummary from '../components/ProjectSummary';
 import Sidebar from '../components/Sidebar';
 import MobileSidebar from "../components/MobileSidebar";
+import { motion } from "framer-motion";
+
 
 
 function ProjectPage() {
@@ -26,7 +28,7 @@ function ProjectPage() {
         variants={containerVariants}
       initial="hidden"
       animate="visible"
-      exit="exit">>
+      exit="exit">
             <div className='project-page'>
             <ProjectSummary/>
             </div>

@@ -282,7 +282,7 @@ const containerVariants ={
       </div>
 
     </motion.div>
-    <ToastContainer position="top-right" autoClose={1000} 
+    <ToastContainer position="top-left" autoClose={1000} 
               hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
@@ -290,7 +290,7 @@ const containerVariants ={
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            style={{ maxWidth: "350px" }}/>
+            style={{ maxWidth: "300px" }}/>
     </div>
   );
 }

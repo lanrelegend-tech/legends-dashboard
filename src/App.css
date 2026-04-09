@@ -273,101 +273,8 @@ h3{
 }
 
 
-.progress-container {
-  position: relative;
-  display: flex;
-  aspect-ratio: 2/1;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-
-  margin: 10px auto;
-}
-
-.semi-circle {
-  width: 50%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 15px solid #ffffff;
-  border-bottom: none;
-  border-radius: 200px 200px 0 0;
-  position: absolute;
-  
-}
-
-.progress {
-  width: 50%;
-  height: 50%;
-  border: 15px solid green;
-  border-bottom: none;
-  border-radius: 200px 200px 0 0;
-  position: absolute;
-  clip-path: inset(0 50% 0 0); 
-  
-}
-
-.text {
-  align-items: center;
-  
-  position: absolute;
-  
-  top: 80%;
-  left: 40%;
-  justify-content: center;
-  margin-bottom: 2rem;
-  
-}
-
-.text h2 {
-  font-size: 1.5rem;
 
 
-
-
-}
-
-
-
-.legends {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  
-  color: #4caf50;
-
-}
-
-.legends i {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  
-}
-
-.completed {
-  background: #4caf50;
-  color: green;
-}
-
-.ongoing {
-  background: #8cc88f;
-}
-
-.pending {
-  background: repeating-linear-gradient(
-    45deg,
-    #b6b6b6,
-    #8d1818 3px,
-    #ffe3e3 3px,
-    #bd4545 6px
-  );
-}
 /* create project*/
 .create-project-form {
   background-color:var(--pages-bg);
@@ -799,7 +706,7 @@ h3{
 }
 
 .field-row input {
-  flex: 1; /* 🔥 THIS IS THE FIX */
+  flex: 1; 
   padding: 10px;
   border-radius: 8px;
   border: 1px solid var(--text-color);
@@ -912,6 +819,9 @@ h3{
   width: 80%;
   padding: 0.2rem;
   font-size: 16px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
   border: none;
   outline: none;
 }
@@ -1004,7 +914,7 @@ h3{
 
   
   }
-  /* Only the table body cells for Project Name and Manager */
+  
 
 
 

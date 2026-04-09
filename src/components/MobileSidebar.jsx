@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { RxDashboard } from "react-icons/rx";
 import { GrProjects } from "react-icons/gr";
 import { FaTasks, FaTimes } from "react-icons/fa";
-import { SlCalender } from "react-icons/sl";
 import { CiSettings, CiLogout } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -50,14 +49,14 @@ function MobileSidebar() {
 
   return (
     <>
-      {/* ✅ Hamburger */}
+      {/*  Hamburger */}
       <div className="hamburger-btn" onClick={toggleSidebar}>
         <div className="line" style={{ backgroundColor: "green" }}></div>
         <div className="line" style={{ backgroundColor: "green" }}></div>
         <div className="line" style={{ backgroundColor: "green" }}></div>
       </div>
 
-      {/* ✅ Sidebar */}
+      {/*  Sidebar */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
         
         {/* Close button */}
@@ -120,10 +119,7 @@ function MobileSidebar() {
             <FaTasks /> Tasks
           </p>
 
-          <p>
-            <SlCalender /> Calendar
-          </p>
-
+         
           <p onClick={() => navigate("/Profile")}>
             <CiSettings /> Settings
           </p>
@@ -139,7 +135,7 @@ function MobileSidebar() {
         </div>
       </div>
 
-      {/* ✅ Overlay */}
+      {/* Overlay */}
       {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
     </>
   );

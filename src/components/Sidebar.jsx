@@ -2,7 +2,6 @@ import React,{ useState }  from "react";
 import { RxDashboard } from "react-icons/rx";
 import { GrProjects } from "react-icons/gr";
 import { FaTasks } from "react-icons/fa";
-import { SlCalender } from "react-icons/sl";
 import { CiSettings } from "react-icons/ci";
 import { SiLogitech } from "react-icons/si";
 import { IoMdHelpCircleOutline } from "react-icons/io";
@@ -62,7 +61,7 @@ const polygonVarient ={
             <p onClick={() => navigate("/")}><RxDashboard />Dashboard</p>
             <p onClick={() => navigate ("/ProjectPage")}> <GrProjects /> Projects</p>
             <p onClick={() => navigate ("/TaskPage")}><FaTasks />Tasks</p>
-            <p><SlCalender />Calender</p>
+            
             <p onClick={() => navigate("/Profile")}><CiSettings />settings</p>
           <p onClick={() => setShowModal(true)}>
   <CiLogout /> Logout
