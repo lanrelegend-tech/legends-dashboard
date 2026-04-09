@@ -232,7 +232,7 @@ th,td {
 /* Only the table body cells for Project Name and Manager */
 .table-summary tbody td.project-name,
 .table-summary tbody td.project-manager {
-  max-width: 90px;       /* adjust as needed */
+  width: 50px !important;       /* adjust as needed */
   white-space: nowrap;
   overflow: visible;
   text-overflow: ellipsis;
@@ -250,6 +250,7 @@ th,td {
   margin-top: -3rem;
   flex-wrap: wrap;
   margin: auto;
+  justify-content: center;
 }
 
 /* dashboard*/
@@ -257,6 +258,7 @@ th,td {
 background-color:  var(--summary-bg);
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+
   
   border-radius: 10px;
 
@@ -956,13 +958,7 @@ h3{
   
   }
   /* Only the table body cells for Project Name and Manager */
-.table-summary tbody td.project-name,
-.table-summary tbody td.project-manager {
-  max-width: 4rem;       /* adjust as needed */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 
 
   
